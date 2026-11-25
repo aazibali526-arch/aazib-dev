@@ -1,0 +1,67 @@
+:root {
+  /* Brand */
+  --blue-900: #0E1B3D;
+  --blue-700: #1F4688;
+  --blue-600: #2A5BB0;
+
+  /* Ink */
+  --ink-950: #11151B;
+  --ink-900: #1A212B;
+  --slate-600: #4A5565;
+
+  /* Surfaces */
+  --white: #FFFFFF;
+  --surface-50: #F5F7FA;
+  --surface-100: #E8EDF3;
+
+  /* Borders */
+  --border: #E3E8EF;
+  --border-strong: #D3DAE3;
+
+  /* Glass */
+  --glass-eyebrow-from: #FFFFFF1F;
+  --glass-eyebrow-to: #8FB1EA2E;
+  --glass-eyebrow-border: #8FB1EA59;
+  --glass-cta-from: #FFFFFF38;
+  --glass-cta-to: #FFFFFF0F;
+  --glass-cta-border: #FFFFFF59;
+  --on-glass: #FFFFFFD9;
+
+  /* Code window */
+  --code-bg: #11151B;
+  --code-border: #222936;
+  --code-text: #ABB2BF;
+  --code-title: #7F8799;
+  --code-tab-text: #E6E9EF;
+  --code-muted: #5C6370;
+  --code-accent: #61AFEF;
+  --dot-red: #FF5F56;
+  --dot-yellow: #FFBD2E;
+  --dot-green: #27C93F;
+
+  /* Status (forms only) */
+  --error: #C62828;
+  --success: #2E7D32;
+
+  /* Fonts */
+  --font-display: var(--font-space-grotesk), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: var(--font-poppins), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-tag: var(--font-aldrich), system-ui, sans-serif;
+
+  /* Radius */
+  --r-btn: 4px;
+  --r-card: 5px;
+  --r-pill: 9999px;
+  --r-circle: 50%;
+
+  /* Spacing */
+  --gap: 16px;
+  --gap-card: 12px;
+  --pad-card: 16px;
+
+  /* Shadows */
+  --shadow-card: 0 2px 12px rgba(17, 21, 27, 0.04);
+  --shadow-card-hover: 0 8px 24px rgba(42, 91, 176, 0.12);
+  --ring-node-hover: 0 0 0 4px rgba(42, 91, 176, 0.12);
+}

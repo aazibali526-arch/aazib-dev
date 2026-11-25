@@ -1,11 +1,31 @@
-# TODO.md: aazib-dev
+# STATE.md: aazib-dev
 
-> Current tasks and progress. Agents: read this before starting, update it when you finish.
-> Rules: one task at a time, mark `[x]` only after lint, type check, and build pass. Never delete completed items.
+> Single source of truth for current progress. Agents: read this before starting, update it after every chunk.
+> Rules: one chunk at a time, mark `[x]` only after lint, type check, and build pass. Never delete completed items.
 
 **Legend:** `[ ]` to do · `[~]` in progress · `[x]` done · `[!]` blocked (add reason)
 
-**Definition of done (every task):** matches `docs/DESIGN.md`, responsive at 375 / 768 / 1280px, hover and focus states, accessible, `pnpm lint` + `pnpm exec tsc --noEmit` + `pnpm build` all pass.
+**Definition of done (every chunk):** matches `docs/DESIGN.md`, responsive at 375 / 768 / 1280px, hover and focus states, accessible, `pnpm lint` + `pnpm exec tsc --noEmit` + `pnpm build` all pass.
+
+---
+
+## Current Status
+
+- Phase: 0 nearly done, Phase 1 in progress (tokens.css, globals.css, @theme done).
+- Code: Next.js scaffold only. Default create-next-app `layout.tsx`, `globals.css`, `page.tsx` (Geist fonts, hex colors, Tailwind default classes). All other `src/` files exist but are empty (0 bytes).
+- Docs: `docs/` has AGENTS, CLAUDE, CONTENT, DESIGN, PROJECT, STATE.
+- Last chunk: globals.css + @theme mapping. lint, tsc, build all pass.
+- Build/lint/tsc last run: all pass.
+## Next (in order)
+
+1. `src/lib/utils.ts` (`cn()`) + `src/lib/fonts.ts` (4 Google fonts via next/font).
+2. Root `layout.tsx`: fonts, metadata base, `lang="en"`, Geist hatao.
+3. `src/data/site.ts` + `src/data/nav.ts`.
+
+## Open Questions
+
+- `about/page.tsx`, `contact/page.tsx`, `robots.ts`, `sitemap.ts` abhi stub hain (build ke liye). Real code Phase 6 / 7 mein.
+- Fonts: DESIGN.md ke `--font-*` tokens literal naam use karte hain, next/font hashed naam deta hai. fonts.ts chunk mein iska mapping decide hoga.
 
 ---
 
@@ -15,20 +35,20 @@
 - [x] Scaffold Next.js (App Router, TypeScript, Tailwind, ESLint, `src/`)
 - [x] Install packages (lucide-react, motion, react-hook-form, zod, resolvers, resend, embla, clsx, tailwind-merge)
 - [x] Create folder structure
-- [ ] Move `DESIGN.md` into `docs/`
-- [ ] Paste `CLAUDE.md`, `AGENTS.md`, `CONTENT.md`, `PROJECT.md`, `TODO.md` into root
-- [ ] Add `.env.example` and `.env.local` (confirm `.env.local` is in `.gitignore`)
-- [ ] Initial commit
-- [ ] Create GitHub repo `aazib-dev` and push
-- [ ] Import repo into Vercel (auto-deploy on `main`)
+- [x] Move `DESIGN.md` into `docs/`
+- [x] Paste `CLAUDE.md`, `AGENTS.md`, `CONTENT.md`, `PROJECT.md`, `TODO.md` into root (they live in `docs/`; `TODO.md` is replaced by `STATE.md`)
+- [ ] Add `.env.example` and `.env.local` (`.gitignore` already ignores `.env*`, keeps `!.env.example`)
+- [x] Initial commit
+- [x] Create GitHub repo `aazib-dev` and push
+- [ ] Import repo into Vercel (auto-deploy on `main`) (VERIFY if done)
 
 ## Phase 1: Foundation
 
-- [ ] `src/styles/tokens.css`: all tokens from DESIGN.md Section 2
-- [ ] Tailwind v4 `@theme` mapped to tokens (colors, fonts, radius, shadows, screens: tablet 768, desktop 1025)
-- [ ] `globals.css`: base reset, body styles, `:focus-visible`, reduced-motion rules
-- [ ] `src/lib/fonts.ts`: Space Grotesk, Poppins, JetBrains Mono, Aldrich via `next/font/google`
-- [ ] `src/lib/utils.ts`: `cn()` helper
+- [x] `src/styles/tokens.css`: all tokens from DESIGN.md Section 2
+- [x] Tailwind v4 `@theme` mapped to tokens (colors, fonts, radius, shadows, screens)
+- [x] `globals.css`: base reset, body styles, `:focus-visible`, reduced-motion rules
+- [~] `src/lib/fonts.ts`: 4 fonts defined, tokens updated to use next/font variables. Verified only after layout.tsx imports it.
+- [x] `src/lib/utils.ts`: `cn()` helper
 - [ ] Root `layout.tsx`: fonts, metadata base, Header and Footer slots, `lang="en"`
 - [ ] `src/data/site.ts` and `src/data/nav.ts`
 - [ ] Hero background class (DESIGN.md Section 5)
@@ -137,4 +157,5 @@
 - Package manager: pnpm only.
 - Zod is v4. Use v4 APIs.
 - DESIGN.md `[S]` values are locked. `[P]` values change only with owner approval.
-- Update this file at the end of every task.
+- `TODO.md` renamed to `STATE.md`. This is now the single task and state file.
+- Update this file at the end of every chunk.

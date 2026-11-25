@@ -1,7 +1,7 @@
 # PROJECT.md: aazib-dev
 
 > What we are building, why, and exactly which pages and features it includes.
-> Visuals live in `docs/DESIGN.md`. Code rules live in `CLAUDE.md`. Copy rules live in `CONTENT.md`. Tasks live in `TODO.md`.
+> Visuals live in `docs/DESIGN.md`. Code rules live in `CLAUDE.md`. Copy rules live in `CONTENT.md`. Tasks live in `STATE.md`.
 
 ---
 

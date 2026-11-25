@@ -6,7 +6,7 @@ This file is for any AI coding agent (Claude Code, Cursor, Copilot, Codex, Gemin
 
 1. `CLAUDE.md`: stack, folder structure, code rules, workflow. **It applies to every agent, not only Claude.**
 2. `docs/DESIGN.md`: the single source of truth for all UI (colors, type, spacing, components, copy).
-3. `TODO.md`: current tasks.
+3. `STATE.md`: current tasks.
 4. `CONTENT.md`: copy and tone of voice.
 5. `PROJECT.md`: what the site is, pages, and features.
 
@@ -47,7 +47,7 @@ pnpm build
 
 Then:
 - Check 375px, 768px, and 1280px widths, plus hover and focus states.
-- Update `TODO.md`.
+- Update `STATE.md`.
 - If a design value changed, update `docs/DESIGN.md` in the same change.
 - Summarize what you changed and which files you touched. Do not modify files outside the task's scope.
 

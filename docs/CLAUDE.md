@@ -123,12 +123,12 @@ src/styles/      tokens.css (the ONLY place hex values live)
 
 ## Workflow
 
-1. Read `docs/DESIGN.md` and this file. Check `TODO.md` for current tasks.
+1. Read `docs/DESIGN.md` and this file. Check `STATE.md` for current tasks.
 2. Work in small steps: one section or feature per task.
 3. Reuse existing `ui/` primitives and `data/` files before creating new ones.
 4. Before finishing, run `pnpm lint`, `pnpm exec tsc --noEmit`, and `pnpm build`. Fix all errors.
 5. Verify at three widths: 375px, 768px, 1280px. Check hover and focus states.
-6. Update `TODO.md`. If a design value changed, update `docs/DESIGN.md` in the same change.
+6. Update `STATE.md`. If a design value changed, update `docs/DESIGN.md` in the same change.
 7. If something is ambiguous or missing from DESIGN.md, ask. Do not guess.
 
 ## Build order

@@ -1,26 +1,77 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "../styles/tokens.css";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-*: initial;
+  --color-blue-900: var(--blue-900);
+  --color-blue-700: var(--blue-700);
+  --color-blue-600: var(--blue-600);
+  --color-ink-950: var(--ink-950);
+  --color-ink-900: var(--ink-900);
+  --color-slate-600: var(--slate-600);
+  --color-white: var(--white);
+  --color-surface-50: var(--surface-50);
+  --color-surface-100: var(--surface-100);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-glass-eyebrow-from: var(--glass-eyebrow-from);
+  --color-glass-eyebrow-to: var(--glass-eyebrow-to);
+  --color-glass-eyebrow-border: var(--glass-eyebrow-border);
+  --color-glass-cta-from: var(--glass-cta-from);
+  --color-glass-cta-to: var(--glass-cta-to);
+  --color-glass-cta-border: var(--glass-cta-border);
+  --color-on-glass: var(--on-glass);
+  --color-code-bg: var(--code-bg);
+  --color-code-border: var(--code-border);
+  --color-code-text: var(--code-text);
+  --color-code-title: var(--code-title);
+  --color-code-tab-text: var(--code-tab-text);
+  --color-code-muted: var(--code-muted);
+  --color-code-accent: var(--code-accent);
+  --color-dot-red: var(--dot-red);
+  --color-dot-yellow: var(--dot-yellow);
+  --color-dot-green: var(--dot-green);
+  --color-error: var(--error);
+  --color-success: var(--success);
+
+  --radius-*: initial;
+  --radius-btn: var(--r-btn);
+  --radius-card: var(--r-card);
+  --radius-pill: var(--r-pill);
+  --radius-circle: var(--r-circle);
+
+  --shadow-*: initial;
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
+  --shadow-ring-node-hover: var(--ring-node-hover);
+  --font-*: initial;
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+  --font-tag: var(--font-tag);
+
+  --breakpoint-lg: 1025px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--surface-50);
+    color: var(--slate-600);
+    font-family: var(--font-body);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--blue-600);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none;
+    transition: none;
+    scroll-behavior: auto;
+  }
 }

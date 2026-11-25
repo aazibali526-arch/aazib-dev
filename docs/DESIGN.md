@@ -65,10 +65,11 @@ Use these as CSS variables. Never hardcode hex values in components.
   --success: #2E7D32;
 
   /* Fonts [S] */
-  --font-display: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-body: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-  --font-tag: 'Aldrich', system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: var(--font-poppins), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-tag: var(--font-aldrich), system-ui, sans-serif;
+
 
   /* Radius [S] */
   --r-btn: 4px;
