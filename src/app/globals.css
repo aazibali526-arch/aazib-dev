@@ -66,6 +66,37 @@
   }
 }
 
+@layer components {
+  .hero {
+    --dot: rgba(255, 255, 255, 0.13);
+    --major: rgba(255, 255, 255, 0.022);
+    --cell: 40px;
+    --major-cell: 200px;
+    background-color: var(--blue-900);
+    background-image:
+      radial-gradient(ellipse 60% 70% at 35% 50%, rgba(14, 27, 61, 0.35), transparent 70%),
+      radial-gradient(circle at center, var(--dot) 0.8px, transparent 1.2px),
+      linear-gradient(var(--major) 1px, transparent 1px),
+      linear-gradient(90deg, var(--major) 1px, transparent 1px),
+      linear-gradient(70deg, var(--blue-900) 0%, var(--blue-700) 55%, var(--blue-600) 100%);
+    background-size:
+      100% 100%,
+      var(--cell) var(--cell),
+      var(--major-cell) var(--major-cell),
+      var(--major-cell) var(--major-cell),
+      100% 100%;
+    background-position: 0 0;
+    background-repeat: no-repeat, repeat, repeat, repeat, no-repeat;
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      --cell: 32px;
+      --major-cell: 160px;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
