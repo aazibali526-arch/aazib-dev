@@ -1,38 +1,41 @@
 # Graph Report - aazib-dev  (2026-11-25)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 43 files · ~9,664 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 4 file(s) not represented in the graph (top: (none) 2, .ico 1, .css 1)
 
 ## Summary
-- 123 nodes · 105 edges · 43 communities (7 shown, 36 thin omitted)
+- 133 nodes · 120 edges · 40 communities (8 shown, 32 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2888ffa3`
+- Built from commit: `d9b24acf`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- Community 0
-- Community 1
-- Community 2
-- Community 3
-- Community 4
-- Community 5
-- Community 6
+- package.json
+- compilerOptions
+- devDependencies
+- next
+- scripts
+- allowBuilds
+- fonts.ts
+- clsx
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 16 edges
-2. `next` - 5 edges
+2. `next` - 8 edges
 3. `scripts` - 5 edges
-4. `eslint` - 3 edges
-5. `eslint-config-next` - 3 edges
-6. `allowBuilds` - 3 edges
-7. `clsx@^2.1.1` - 2 edges
-8. `embla-carousel-react@^8.6.0` - 2 edges
-9. `@hookform/resolvers@^7.0.8` - 2 edges
-10. `lucide-react@^1.77.0` - 2 edges
+4. `clsx` - 3 edges
+5. `tailwind-merge` - 3 edges
+6. `eslint` - 3 edges
+7. `eslint-config-next` - 3 edges
+8. `allowBuilds` - 3 edges
+9. `clsx@^2.1.1` - 2 edges
+10. `embla-carousel-react@^8.6.0` - 2 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -40,49 +43,57 @@
 ## Import Cycles
 - None detected.
 
-## Communities (43 total, 36 thin omitted)
+## Communities (40 total, 32 thin omitted)
 
-### Community 0 - "Community 0"
-Cohesion: 0.10
-Nodes (27): dependencies, clsx@^2.1.1, embla-carousel-react@^8.6.0, @hookform/resolvers@^7.0.8, lucide-react@^1.77.0, motion@^14.14.0, react@19.3.0, react-dom@19.3.0 (+19 more)
+### Community 0 - "package.json"
+Cohesion: 0.12
+Nodes (23): dependencies, embla-carousel-react@^8.6.0, @hookform/resolvers@^7.0.8, lucide-react@^1.77.0, motion@^14.14.0, react@19.3.0, react-dom@19.3.0, react-hook-form@^7.92.0 (+15 more)
 
-### Community 1 - "Community 1"
+### Community 1 - "compilerOptions"
 Cohesion: 0.11
 Nodes (18): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+10 more)
 
-### Community 2 - "Community 2"
-Cohesion: 0.15
-Nodes (13): devDependencies, tailwindcss@4.3.3, @tailwindcss/turbopack@4.3.3, @types/node@^20, @types/react@^19, @types/react-dom@^19, typescript@^5, tailwindcss (+5 more)
+### Community 2 - "devDependencies"
+Cohesion: 0.11
+Nodes (18): eslintConfig, devDependencies, eslint@^9, eslint-config-next@16.4.6, tailwindcss@4.3.3, @tailwindcss/turbopack@4.3.3, @types/node@^20, @types/react@^19 (+10 more)
 
-### Community 3 - "Community 3"
-Cohesion: 0.17
+### Community 3 - "next"
+Cohesion: 0.12
 Nodes (6): nextConfig, next@16.4.6, next, geistMono, geistSans, metadata
 
-### Community 4 - "Community 4"
-Cohesion: 0.33
-Nodes (5): eslintConfig, eslint@^9, eslint-config-next@16.4.6, eslint, eslint-config-next
-
-### Community 5 - "Community 5"
+### Community 5 - "scripts"
 Cohesion: 0.40
 Nodes (5): scripts, build, dev, lint, start
 
-### Community 6 - "Community 6"
+### Community 6 - "allowBuilds"
 Cohesion: 0.50
 Nodes (3): allowBuilds, sharp, unrs-resolver
 
+### Community 40 - "fonts.ts"
+Cohesion: 0.33
+Nodes (5): aldrich, fontVariables, jetBrainsMono, poppins, spaceGrotesk
+
+### Community 42 - "clsx"
+Cohesion: 0.33
+Nodes (4): clsx@^2.1.1, tailwind-merge@^3.7.1, clsx, tailwind-merge
+
 ## Knowledge Gaps
-- **36 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `next` connect `Community 3` to `Community 0`?**
-  _High betweenness centrality (0.078) - this node is a cross-community bridge._
-- **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.10052910052910052 - nodes in this community are weakly interconnected._
-- **Why does `dependencies` connect `Community 0` to `Community 3`?**
-  _High betweenness centrality (0.054) - this node is a cross-community bridge._
-- **Should `Community 1` be split into smaller, more focused modules?**
+- **Why does `next` connect `next` to `package.json`, `fonts.ts`?**
+  _High betweenness centrality (0.147) - this node is a cross-community bridge._
+- **Should `package.json` be split into smaller, more focused modules?**
+  _Cohesion score 0.11594202898550725 - nodes in this community are weakly interconnected._
+- **Why does `dependencies` connect `package.json` to `clsx`, `next`?**
+  _High betweenness centrality (0.056) - this node is a cross-community bridge._
+- **Should `compilerOptions` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
-- **Why does `devDependencies` connect `Community 2` to `Community 0`, `Community 4`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
+- **Why does `devDependencies` connect `devDependencies` to `package.json`?**
+  _High betweenness centrality (0.035) - this node is a cross-community bridge._
+- **Should `devDependencies` be split into smaller, more focused modules?**
+  _Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected._
+- **Should `next` be split into smaller, more focused modules?**
+  _Cohesion score 0.125 - nodes in this community are weakly interconnected._
