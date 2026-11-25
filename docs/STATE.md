@@ -11,21 +11,26 @@
 
 ## Current Status
 
-- Phase: 0 nearly done, Phase 1 in progress (tokens.css, globals.css, @theme done).
-- Code: Next.js scaffold only. Default create-next-app `layout.tsx`, `globals.css`, `page.tsx` (Geist fonts, hex colors, Tailwind default classes). All other `src/` files exist but are empty (0 bytes).
+- Phase: 0 nearly done (`.env.local` and Vercel import pending, owner). Phase 1 written, full local test pending.
+- Code: tokens.css, globals.css (`@theme`, `.hero` class), fonts.ts, utils.ts, layout.tsx (fonts + `defaultMetadata`), site.ts, nav.ts, seo.ts. All other `src/` files exist but are empty (0 bytes). `page.tsx` is still the default create-next-app page.
 - Docs: `docs/` has AGENTS, CLAUDE, CONTENT, DESIGN, PROJECT, STATE.
-- Last chunk: globals.css + @theme mapping. lint, tsc, build all pass.
-- Build/lint/tsc last run: all pass.
+- Last chunk: Phase 0/1 setup finish: `.env.example`, `seo.ts`, layout metadata, `.hero` class, `site.ts`, `nav.ts`. Sandbox lint + tsc pass.
+- Last full local test (lint, tsc, build): pass, before the last chunk. Re-run pending (VERIFY).
+- Owner confirmed pasted: `site.ts`, `nav.ts`. VERIFY pasted: `.env.example`, `seo.ts`, layout metadata change, `.hero` block in globals.css.
+
 ## Next (in order)
 
-1. `src/lib/utils.ts` (`cn()`) + `src/lib/fonts.ts` (4 Google fonts via next/font).
-2. Root `layout.tsx`: fonts, metadata base, `lang="en"`, Geist hatao.
-3. `src/data/site.ts` + `src/data/nav.ts`.
+1. VERIFY the 4 files above are pasted, then run the full local test: `pnpm lint`, `pnpm exec tsc --noEmit`, `pnpm build`. If all pass, mark the `[~]` Phase 1 items `[x]`.
+2. Phase 2: `Button` primitive.
+3. Header/Footer slots in `layout.tsx` (after Phase 3 components exist).
 
 ## Open Questions
 
-- `about/page.tsx`, `contact/page.tsx`, `robots.ts`, `sitemap.ts` abhi stub hain (build ke liye). Real code Phase 6 / 7 mein.
-- Fonts: DESIGN.md ke `--font-*` tokens literal naam use karte hain, next/font hashed naam deta hai. fonts.ts chunk mein iska mapping decide hoga.
+- `about/page.tsx`, `contact/page.tsx`, `robots.ts`, `sitemap.ts` are stubs (needed for build). Real code in Phase 6 / 7.
+- Nav items (Home, About, Services, Work, Contact) are a proposal. Owner approval pending.
+- `/services` and `/work` pages do not exist yet. Nav links will 404 until Phase 6.
+- Footer links and Privacy link TBD. Add to `nav.ts` in the Footer chunk.
+- Meta description for the default metadata: pending owner approval (CONTENT.md).
 
 ---
 
@@ -37,7 +42,8 @@
 - [x] Create folder structure
 - [x] Move `DESIGN.md` into `docs/`
 - [x] Paste `CLAUDE.md`, `AGENTS.md`, `CONTENT.md`, `PROJECT.md`, `TODO.md` into root (they live in `docs/`; `TODO.md` is replaced by `STATE.md`)
-- [ ] Add `.env.example` and `.env.local` (`.gitignore` already ignores `.env*`, keeps `!.env.example`)
+- [x] Add `.env.example` (empty placeholders only; `.gitignore` already ignores `.env*`, keeps `!.env.example`)
+- [ ] Create `.env.local`: owner copies `.env.example` and fills own values (never share keys in chat)
 - [x] Initial commit
 - [x] Create GitHub repo `aazib-dev` and push
 - [ ] Import repo into Vercel (auto-deploy on `main`) (VERIFY if done)
@@ -47,11 +53,12 @@
 - [x] `src/styles/tokens.css`: all tokens from DESIGN.md Section 2
 - [x] Tailwind v4 `@theme` mapped to tokens (colors, fonts, radius, shadows, screens)
 - [x] `globals.css`: base reset, body styles, `:focus-visible`, reduced-motion rules
-- [~] `src/lib/fonts.ts`: 4 fonts defined, tokens updated to use next/font variables. Verified only after layout.tsx imports it.
+- [x] `src/lib/fonts.ts`: 4 fonts, imported by layout.tsx. Verified, build passes.
 - [x] `src/lib/utils.ts`: `cn()` helper
-- [ ] Root `layout.tsx`: fonts, metadata base, Header and Footer slots, `lang="en"`
-- [ ] `src/data/site.ts` and `src/data/nav.ts`
-- [ ] Hero background class (DESIGN.md Section 5)
+- [~] Root `layout.tsx`: fonts, `lang="en"`, metadata base done (written, local test pending). Header and Footer slots pending (Phase 3).
+- [~] `src/lib/seo.ts`: `defaultMetadata` (default title + template, `metadataBase` only if `NEXT_PUBLIC_SITE_URL` is set). Written, local test pending. Description pending owner approval.
+- [~] `src/data/site.ts` and `src/data/nav.ts`: written, local test pending. Nav items proposed, domain and socials TBD.
+- [~] Hero background class `.hero` in `globals.css` (DESIGN.md Section 5). Written, local test pending.
 
 ## Phase 2: UI Primitives (`src/components/ui/`)
 
@@ -149,6 +156,9 @@
 - [ ] Project details and screenshots
 - [ ] Primary keyword approval per page
 - [ ] Mobile card grid decision (1 column assumed)
+- [ ] Final nav items approval
+- [ ] Footer text, links, socials
+- [ ] Default meta description approval
 
 ---
 
@@ -159,3 +169,10 @@
 - DESIGN.md `[S]` values are locked. `[P]` values change only with owner approval.
 - `TODO.md` renamed to `STATE.md`. This is now the single task and state file.
 - Update this file at the end of every chunk.
+- Fonts: tokens in `tokens.css` use the next/font variables (`--font-space-grotesk`, `--font-poppins`, `--font-jetbrains-mono`, `--font-aldrich`). Mapping resolved.
+- `metadataBase` is set only when `NEXT_PUBLIC_SITE_URL` exists. No invented domain.
+- Header CTA label uses the typographic apostrophe: `Let’s Work Together`.
+- `.hero` lives in `@layer components` in `globals.css`, values copied as-is from DESIGN.md Section 5.
+- Test policy: owner runs the full local test (lint, tsc, build) at the end of a phase group. Sandbox can run lint + tsc only (Google Fonts blocked for build).
+- On a fresh clone, tsc may fail on `LayoutProps` until `pnpm exec next typegen` or `pnpm build` has run once.
+- Never share secrets or client data in chat. Keys go only in `.env.local`.
