@@ -15,7 +15,7 @@
 - Code: tokens.css, globals.css (`@theme`, `.hero`, `.btn-shine`, `.reveal`), fonts.ts, utils.ts, layout.tsx (Header + Footer), site.ts, nav.ts, seo.ts, `lib/navigation.ts`. UI primitives: Button, Card, Eyebrow, IconNode, Field, Input, Textarea, SectionIntro, Reveal. Layout: Header, DesktopNav, NavDropdown, MobileNav, `navStyles.ts`, Footer. Asset: `public/images/logo-header.png`.
 - `page.tsx` is a TEMP UI preview page with placeholder copy (uses `/globe.svg`). Replaced in Phase 4. Section components, remaining data files and `actions/contact.ts` are still empty (0 bytes).
 - Docs: `docs/` has AGENTS, CLAUDE, CONTENT, DESIGN, PROJECT, STATE. DESIGN.md updated for Header (6.12) and Footer (6.13).
-- Last chunk: Footer redesign (brand block with logo and positioning text, three link columns, bottom bar with copyright, Privacy link and "built with" line).
+- Last chunk: Home page now renders `Hero` from `src/data/hero.ts` (`homeHero`). The rest of `page.tsx` is still the TEMP preview.
 - Last confirmed full local test (lint, tsc, build): pass after the centered nav and Poppins change. Re-run pending after: scroll-state Header, Services link dropdown, MobileNav update, Footer (VERIFY).
 - Owner approved in preview: Button, Card, Eyebrow, IconNode, SectionIntro. Not yet previewed: Input, Textarea, Reveal, Header, Footer.
 
@@ -23,7 +23,7 @@
 
 1. Owner: apply the Footer logo and text diff if not yet applied, then run `pnpm lint`, `pnpm exec tsc --noEmit`, `pnpm build`. Preview at 375 / 768 / 1025 / 1280px: Header (transparent at top, solid after 8px scroll, centered nav, dropdowns by hover and keyboard, mobile focus trap, Escape, scroll lock), Footer, Input, Textarea (min 140px), Reveal. If all pass, mark Phase 2 and Phase 3 items `[x]`.
 2. Owner: approve the footer positioning text (draft in `site.ts`), and provide social links and the booking link (Calendly or Cal.com) if any.
-3. Phase 4: `Hero` and the home sections. Hero must start under the transparent Header. Remove the TEMP preview from `page.tsx` and delete unused `public/` boilerplate (`next.svg`, `vercel.svg`, `file.svg`, `globe.svg`, `window.svg`) after owner approval.
+3. Phase 4: remaining home sections. Hero is mounted and must stay under the transparent Header. Remove the rest of the TEMP preview from `page.tsx` and delete unused `public/` boilerplate (`next.svg`, `vercel.svg`, `file.svg`, `globe.svg`, `window.svg`) after owner approval.
 
 ## OPEN QUESTIONS
 
@@ -89,7 +89,7 @@
 
 ## PHASE 4: HOME SECTIONS
 
-- [ ] `Hero`
+- [~] `Hero` (rendered on `/` from `homeHero`. Rest of the page is still the TEMP preview. Lint and tsc passed. Full `pnpm build` still pending.)
 - [ ] `CodeWindow`
 - [ ] `Services` (3 cards)
 - [ ] `TechCarousel` (pure CSS, mask fade, hover color)

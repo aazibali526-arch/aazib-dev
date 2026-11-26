@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import { Reveal } from "@/components/shared/Reveal";
 import { SectionIntro } from "@/components/shared/SectionIntro";
+import { Hero } from "@/components/sections/Hero";
+import { homeHero } from "@/data/hero";
 
 // TEMP: UI preview with placeholder copy. Real copy goes in src/data/*.
 const previewCards = [
@@ -33,25 +35,7 @@ const description =
 export default function Home() {
   return (
     <main>
-      <section
-        aria-label="Preview hero"
-        className="hero px-5 pb-12 pt-28 md:px-8 md:pb-16 md:pt-36 lg:px-10 lg:pb-20 lg:pt-40"
-      >
-        <div className="mx-auto max-w-300">
-          <Eyebrow className="mb-4">Open For Freelance</Eyebrow>
-          <h1 className="mb-8 font-display text-5xl font-bold leading-[1.1] tracking-[-0.02em] text-surface-50 md:text-[56px] lg:text-[64px]">
-            UI Preview
-          </h1>
-          <div className="flex flex-col gap-4 md:flex-row md:justify-center lg:justify-start">
-            <Button fullWidthOnMobile href="/contact">
-              Let’s Work Together
-            </Button>
-            <Button fullWidthOnMobile variant="ghost" href="/about">
-              Explore My Work
-            </Button>
-          </div>
-        </div>
-      </section>
+      <Hero {...homeHero} />
 
       <section
         aria-label="Eyebrow and icon node preview"
