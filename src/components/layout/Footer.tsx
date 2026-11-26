@@ -51,9 +51,9 @@ export function Footer() {
               alt="Aazib"
               width={648}
               height={192}
-              className="h-14 w-auto self-start md:h-16 lg:h-20"
+              className="h-16 w-auto self-start md:h-20 lg:h-24"
             />
-            <p className="max-w-md font-body text-lg font-normal leading-relaxed text-surface-50 md:text-xl">
+            <p className="max-w-md font-body text-sm font-normal leading-normal text-code-text">
               {site.positioning}
             </p>
           </div>

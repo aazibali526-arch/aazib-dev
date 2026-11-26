@@ -20,7 +20,7 @@ export const site: Site = {
   role: "Freelance Developer",
   location: "Islamabad, Pakistan",
   positioning:
-    "I’m Aazib Ali, a freelance developer in Islamabad. I build fast websites, mobile apps and AI solutions for your business.",
+    "Helping businesses streamline workflows and grow with fast websites, custom mobile applications, and AI solutions.",
   builtWith: ["Next.js", "Tailwind CSS"],
   copyrightYear: 2026,
   email: "aazibali.dev@gmail.com",
