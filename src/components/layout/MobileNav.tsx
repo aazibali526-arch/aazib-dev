@@ -94,33 +94,61 @@ export function MobileNav() {
             if ("children" in item) {
               const groupId = `mobile-group-${item.label.toLowerCase()}`;
               const expanded = openGroup === item.label;
-              const groupActive = item.children.some((child) =>
-                isActivePath(pathname, child.href, true),
+              const groupActive = item.href
+                ? isActivePath(pathname, item.href)
+                : item.children.some((child) =>
+                    isActivePath(pathname, child.href, true),
+                  );
+              const chevron = (
+                <ChevronDown
+                  aria-hidden="true"
+                  strokeWidth={2}
+                  className={cn(
+                    "size-5 transition-transform duration-300 ease-smooth",
+                    expanded && "rotate-180",
+                  )}
+                />
               );
 
               return (
                 <li key={item.label}>
-                  <button
-                    type="button"
-                    aria-expanded={expanded}
-                    aria-controls={groupId}
-                    onClick={() => setOpenGroup(expanded ? null : item.label)}
-                    className={cn(
-                      navLinkBase,
-                      "w-full justify-between",
-                      groupActive && navLinkActive,
-                    )}
-                  >
-                    {item.label}
-                    <ChevronDown
-                      aria-hidden="true"
-                      strokeWidth={2}
+                  {item.href ? (
+                    <div className="flex items-center justify-between">
+                      <Link
+                        href={item.href}
+                        aria-current={pathname === item.href ? "page" : undefined}
+                        onClick={() => setOpenedAt(null)}
+                        className={cn(navLinkBase, groupActive && navLinkActive)}
+                      >
+                        {item.label}
+                      </Link>
+                      <button
+                        type="button"
+                        aria-expanded={expanded}
+                        aria-controls={groupId}
+                        aria-label={`${item.label} menu`}
+                        onClick={() => setOpenGroup(expanded ? null : item.label)}
+                        className="flex size-11 items-center justify-center text-surface-50 focus-visible:outline-white"
+                      >
+                        {chevron}
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      aria-expanded={expanded}
+                      aria-controls={groupId}
+                      onClick={() => setOpenGroup(expanded ? null : item.label)}
                       className={cn(
-                        "size-5 transition-transform duration-300 ease-smooth",
-                        expanded && "rotate-180",
+                        navLinkBase,
+                        "w-full justify-between",
+                        groupActive && navLinkActive,
                       )}
-                    />
-                  </button>
+                    >
+                      {item.label}
+                      {chevron}
+                    </button>
+                  )}
                   {expanded ? (
                     <ul
                       id={groupId}

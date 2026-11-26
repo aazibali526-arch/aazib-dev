@@ -37,7 +37,7 @@ export default function Home() {
         aria-label="Preview hero"
         className="hero px-5 pb-12 pt-28 md:px-8 md:pb-16 md:pt-36 lg:px-10 lg:pb-20 lg:pt-40"
       >
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-300">
           <Eyebrow className="mb-4">Open For Freelance</Eyebrow>
           <h1 className="mb-8 font-display text-5xl font-bold leading-[1.1] tracking-[-0.02em] text-surface-50 md:text-[56px] lg:text-[64px]">
             UI Preview
@@ -57,7 +57,7 @@ export default function Home() {
         aria-label="Eyebrow and icon node preview"
         className="bg-surface-100 px-5 py-8 md:px-8 lg:px-10"
       >
-        <div className="mx-auto flex max-w-[1200px] flex-col gap-6">
+        <div className="mx-auto flex max-w-300 flex-col gap-6">
           <Eyebrow tone="light">A Bit About Me</Eyebrow>
           <div className="flex items-center gap-4">
             <IconNode icon={Globe} variant="process" />
@@ -75,7 +75,7 @@ export default function Home() {
         aria-label="Card preview"
         className="bg-surface-50 px-5 py-12 md:px-8 md:py-16 lg:px-10 lg:py-20"
       >
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-300">
           <SectionIntro
             className="mb-6 md:mb-8 lg:mb-10"
             eyebrow="My Services"
@@ -106,7 +106,7 @@ export default function Home() {
         aria-label="Form preview"
         className="bg-surface-100 px-5 py-12 md:px-8 md:py-16 lg:px-10 lg:py-20"
       >
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-300">
           <div className="flex max-w-xl flex-col gap-4 rounded-card border border-border bg-white p-5 shadow-card md:p-8">
             <Input id="preview-name" label="Your Name" placeholder="Aazib Ali" />
             <Input
@@ -141,7 +141,7 @@ export default function Home() {
         aria-label="Reveal preview"
         className="bg-surface-50 px-5 py-12 md:px-8 md:py-16 lg:px-10 lg:py-20"
       >
-        <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-x-3 gap-y-3.5 md:gap-x-4 md:gap-y-4 lg:gap-x-6 lg:gap-y-[18px]">
+        <div className="mx-auto grid max-w-300 grid-cols-2 gap-x-3 gap-y-3.5 md:gap-x-4 md:gap-y-4 lg:gap-x-6 lg:gap-y-[18px]">
           {previewStrengths.map((item, index) => (
             <Reveal key={item.label} delay={(index % 2) * 100}>
               <div className="flex items-center gap-2.5 md:gap-3 lg:gap-3.5">

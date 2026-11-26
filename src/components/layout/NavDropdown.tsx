@@ -20,9 +20,9 @@ export function NavDropdown({ group, pathname }: NavDropdownProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const mouseInside = useRef(false);
   const menuId = useId();
-  const active = group.children.some((child) =>
-    isActivePath(pathname, child.href, true),
-  );
+  const active = group.href
+    ? isActivePath(pathname, group.href)
+    : group.children.some((child) => isActivePath(pathname, child.href, true));
 
   useEffect(() => {
     if (!open) return;
@@ -67,6 +67,17 @@ export function NavDropdown({ group, pathname }: NavDropdownProps) {
     buttonRef.current?.focus();
   }
 
+  const chevron = (
+    <ChevronDown
+      aria-hidden="true"
+      strokeWidth={2}
+      className={cn(
+        "size-4 transition-transform duration-300 ease-smooth",
+        open && "rotate-180",
+      )}
+    />
+  );
+
   return (
     <div
       ref={rootRef}
@@ -76,24 +87,41 @@ export function NavDropdown({ group, pathname }: NavDropdownProps) {
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
     >
-      <button
-        ref={buttonRef}
-        type="button"
-        aria-expanded={open}
-        aria-controls={menuId}
-        onClick={handleClick}
-        className={cn(navLinkBase, "gap-1.5", active && navLinkActive)}
-      >
-        {group.label}
-        <ChevronDown
-          aria-hidden="true"
-          strokeWidth={2}
-          className={cn(
-            "size-4 transition-transform duration-300 ease-smooth",
-            open && "rotate-180",
-          )}
-        />
-      </button>
+      {group.href ? (
+        <div className="flex items-center">
+          <Link
+            href={group.href}
+            aria-current={pathname === group.href ? "page" : undefined}
+            onClick={() => setOpen(false)}
+            className={cn(navLinkBase, active && navLinkActive)}
+          >
+            {group.label}
+          </Link>
+          <button
+            ref={buttonRef}
+            type="button"
+            aria-expanded={open}
+            aria-controls={menuId}
+            aria-label={`${group.label} menu`}
+            onClick={handleClick}
+            className="flex min-h-11 w-8 items-center justify-center text-surface-50 transition-colors duration-300 ease-smooth hover:text-white focus-visible:outline-white"
+          >
+            {chevron}
+          </button>
+        </div>
+      ) : (
+        <button
+          ref={buttonRef}
+          type="button"
+          aria-expanded={open}
+          aria-controls={menuId}
+          onClick={handleClick}
+          className={cn(navLinkBase, "gap-1.5", active && navLinkActive)}
+        >
+          {group.label}
+          {chevron}
+        </button>
+      )}
 
       <div
         className={cn(
@@ -105,7 +133,7 @@ export function NavDropdown({ group, pathname }: NavDropdownProps) {
       >
         <ul
           id={menuId}
-          className="flex min-w-64 flex-col gap-1 rounded-card border border-glass-eyebrow-border bg-blue-900 p-2 shadow-card-hover"
+          className="flex w-max min-w-64 flex-col gap-1 rounded-card border border-glass-eyebrow-border bg-blue-900 p-2 shadow-card-hover"
         >
           {group.children.map((child) => {
             const childActive = isActivePath(pathname, child.href, true);
@@ -116,7 +144,7 @@ export function NavDropdown({ group, pathname }: NavDropdownProps) {
                   aria-current={childActive ? "page" : undefined}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "flex min-h-11 items-center rounded-btn px-4 font-mono text-base font-medium leading-[1.4] text-surface-50 transition-colors duration-300 ease-smooth hover:bg-glass-eyebrow-from hover:text-white focus-visible:outline-white",
+                    "flex min-h-11 items-center whitespace-nowrap rounded-btn px-4 font-body text-base font-normal leading-[1.4] text-surface-50 transition-colors duration-300 ease-smooth hover:bg-glass-eyebrow-from hover:text-white focus-visible:outline-white",
                     childActive && "bg-glass-eyebrow-from text-white",
                   )}
                 >

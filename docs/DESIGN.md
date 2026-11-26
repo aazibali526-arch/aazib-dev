@@ -24,7 +24,7 @@ Keywords: engineered, minimal, blue-on-gray, terminal-inspired, high contrast.
 
 Use these as CSS variables. Never hardcode hex values in components.
 
-```css
+`````css
 :root {
   /* Brand */
   --blue-900: #0E1B3D;   /* hero base */                                     [S]
@@ -94,7 +94,7 @@ Use these as CSS variables. Never hardcode hex values in components.
   --shine-ink: rgba(17, 21, 27, 0.12);
   --shine-blue: rgba(42, 91, 176, 0.16);
 }
-```
+`````
 
 ### Color roles (strict) `[S]`
 
@@ -121,8 +121,8 @@ Load via Google Fonts, `display=swap`: Space Grotesk 600/700, Poppins 400, JetBr
 
 **Font roles. Never swap:**
 - Space Grotesk → all headings and strength labels
-- Poppins 400 → all paragraphs
-- JetBrains Mono 500 → eyebrows, buttons, link-buttons, code UI
+- Poppins 400 → all paragraphs, nav links, footer links and footer text `[P]`
+- JetBrains Mono 500 → eyebrows, buttons, link-buttons, code UI. JetBrains Mono 400 → footer bottom bar `[P]`
 - Aldrich 400 → h6 taglines, contact detail line
 
 | Style | Font | Wt | Desktop / Tablet / Mobile (px) | Line-h | Tracking | Color |
@@ -136,12 +136,17 @@ Load via Google Fonts, `display=swap`: Space Grotesk 600/700, Poppins 400, JetBr
 | Eyebrow | JetBrains Mono | 500 | 16 / 16 / 14 | 1.4 | 0 | `--blue-700` light · `--white` dark |
 | Link-button | JetBrains Mono | 500 | 18 / 16 / 15 | 1.5 | 0.02px | `--blue-600` |
 | Button label | JetBrains Mono | 500 | 16 / 16 / 15 `[P]` | 1.4 | 0 | per variant |
+| Nav link `[P]` | Poppins | 400 | 16 / 16 / 16 | 1.4 | 0 | `--surface-50` (hover/active `--white`) |
+| Footer heading `[P]` | Space Grotesk | 600 | 18 / 18 / 18 | 1.3 | 0 | `--surface-50` |
+| Footer statement `[P]` | Poppins | 400 | 20 / 20 / 18 | 1.6 | 0 | `--surface-50` |
+| Footer link `[P]` | Poppins | 400 | 14 / 14 / 14 | 1.5 | 0 | `--code-text` (hover `--code-accent`) |
+| Footer meta `[P]` | JetBrains Mono | 400 | 13 / 13 / 13 | 1.5 | 0 | `--code-title` (hover `--code-accent`) |
 
 ### Alignment rules `[S]`
 - **Section intro** (eyebrow + H2 + lead): centered.
 - **Hero**: left on desktop, centered on tablet and mobile (H1, lead, buttons).
 - **Card paragraphs**: justified. Card titles and taglines: left.
-- **CTA glass panel** and **Contact "Let's Connect" intro**: left-aligned (`start`).
+- **CTA glass panel** and **Contact "Let’s Connect" intro**: left-aligned (`start`).
 - Tagline sits under card title with `margin-top: -12px`.
 
 ---
@@ -149,15 +154,15 @@ Load via Google Fonts, `display=swap`: Space Grotesk 600/700, Poppins 400, JetBr
 ## 4. LAYOUT
 
 ### Breakpoints `[S]`
-| Name | Range |
-|---|---|
-| Mobile | ≤ 767px (base) |
-| Tablet | 768–1024px |
-| Desktop | ≥ 1025px |
-| Carousel extra | ≤ 640px |
+| Name | Range | Tailwind |
+|---|---|---|
+| Mobile | ≤ 767px (base) | base |
+| Tablet | 768–1024px | `md` (768px, default) |
+| Desktop | ≥ 1025px | `lg` (overridden to 1025px) |
+| Carousel extra | ≤ 640px | `sm` / max-width rule |
 
 ### Content width `[P]`
-Max **1200px**, centered. Section backgrounds full-bleed.
+Max **1200px** (`max-w-300` in Tailwind v4), centered. Section backgrounds full-bleed.
 
 ### Section padding `[S]`
 | | Top/Bottom | Left/Right |
@@ -173,7 +178,7 @@ Max **1200px**, centered. Section backgrounds full-bleed.
 | Tablet | 144 | 32 | 64 | 32 |
 | Mobile | 112 | 20 | 48 | 20 |
 
-Hero direction: row on desktop, column on tablet and below.
+Hero direction: row on desktop, column on tablet and below. The hero extends under the fixed Header (the Header is transparent at the top of the page).
 
 ### Gaps `[S]`
 Between blocks 16px · inside cards 12px · card padding 16px · grid gap 16px.
@@ -186,13 +191,15 @@ Hero (navy) → Services `--surface-50` → Tech carousel `--ink-950` → Work `
 
 About: Hero → `--surface-50` content (+ timeline). Contact: Hero → intro/map → `--surface-50` form + strengths.
 
+Every page starts with a dark `.hero` banner so the transparent Header stays readable.
+
 ---
 
 ## 5. HERO BACKGROUND `[S]`
 
 Used on every page hero (class `.hero`). Tokenized, no `!important` needed in code (Elementor needs it).
 
-```css
+`````css
 .hero {
   --dot: rgba(255,255,255,0.13);
   --major: rgba(255,255,255,0.022);
@@ -210,7 +217,7 @@ Used on every page hero (class `.hero`). Tokenized, no `!important` needed in co
   background-repeat: no-repeat, repeat, repeat, repeat, no-repeat;
 }
 @media (max-width: 767px) { .hero { --cell: 32px; --major-cell: 160px; } }
-```
+`````
 
 ---
 
@@ -221,7 +228,7 @@ All: JetBrains Mono 500, **2px border, radius 4px**. Size `[P]`: padding `14px 2
 
 | Variant | Use | Bg | Text | Border | Hover |
 |---|---|---|---|---|---|
-| Primary (dark bg) | "Let's Work Together", CTA, "Download My Resume ↓" | `--white` | `--ink-950` | `--white` | bg `--ink-950`, text `--white`, border `--ink-950` |
+| Primary (dark bg) | "Contact Me" (header), CTA, "Download My Resume ↓" | `--white` | `--ink-950` | `--white` | bg `--ink-950`, text `--white`, border `--ink-950` |
 | Ghost (dark bg) | "Explore My Work" | transparent | `--white` | `--white` | bg `--white`, text `--ink-950`, sheen sweep |
 | Outline (light bg) | "Explore All Services" | transparent | `--blue-600` | `--blue-600` `[I]` | text `--blue-700`, sheen sweep |
 | Link-button | inside cards | transparent | `--blue-600` | none, padding 0, margin 0 | `float` animation, transition 1.3s |
@@ -295,18 +302,27 @@ Carousel, 5 items: name, company, review. Short, plain, human quotes. Colors fro
 Full-width embedded map, height 560px. Section intro above: eyebrow "My Location", H2, lead (centered).
 
 ### 6.12 Header / Nav `[P]`
-- Fixed top, height 72px (64px mobile), bg `--blue-900` at 85% opacity, `backdrop-filter: blur(8px)`, 1px bottom border `--glass-eyebrow-border`.
-- Logo: Space Grotesk 700, 20px, `--surface-50`.
-- Links: JetBrains Mono 500, 16px, `--surface-50`, gap 32px. Hover/active: `--white`, 2px underline `--blue-600`, offset 6px.
-- Right: one Primary button "Let's Work Together".
-- Mobile: 24px stroke hamburger, full-width panel bg `--blue-900`, links stacked, gap 24px.
+- **Position and size:** fixed top, full width, z above content. Height 72px (tablet and up), 64px mobile. Inner content max 1200px, padding `20 / 32 / 40px` (mobile / tablet / desktop).
+- **Scroll states:** at the top of the page the Header is transparent with a transparent bottom border, so it blends into the hero banner. After scrolling more than 8px: bg `--blue-900` at 85% opacity, `backdrop-filter: blur(8px)`, 1px bottom border `--glass-eyebrow-border`. Transition 300ms `--ease-smooth`. While the mobile menu is open the Header is solid `--blue-900` with the border.
+- **Desktop layout (≥1025px):** 3-column grid `1fr auto 1fr`. Logo left, nav centered, Primary button right.
+- **Logo:** image `public/images/logo-header.png` (white wordmark, no tagline, for dark backgrounds). Height 36px mobile, 40px tablet and up. Links to `/`. The original logo with tagline is for light backgrounds only.
+- **Links:** Poppins 400, 16px, `--surface-50`, gap 32px, min-height 44px, never wrap. Hover/active: `--white`, 2px underline `--blue-600`, offset 6px.
+- **Items:** Home · Services · About · Portfolio · Resources, then the CTA. Data lives in `nav.ts`.
+- **Services:** the label is a link to `/services`. A separate chevron button (32px wide, 44px tall) toggles the dropdown. Dropdown has exactly three items: Web Development, Mobile App Development, AI & LLM Solutions. "All Services" is not in the dropdown.
+- **Resources:** a disclosure button with chevron. Dropdown items: FAQs, Schedule Consultation.
+- **Dropdown panel:** bg `--blue-900`, 1px `--glass-eyebrow-border`, radius 5px, `--shadow-card-hover`, min-width 256px and grows to fit the longest item. Items: Poppins 400 16px, `--surface-50`, min-height 44px, padding `0 16px`, no line breaks. Item hover/active: bg `--glass-eyebrow-from`, text `--white`. Opens on mouse hover and on click / Enter / Space. Closes on Escape, outside click or focus leaving. Fade and 4px slide, 300ms `--ease-smooth`.
+- **CTA:** one Primary button, label from `nav.ts` ("Contact Me").
+- **Mobile (below 1025px, tablet included):** 24px stroke hamburger (44px target). Full-width panel under the Header, bg `--blue-900`, top border `--glass-eyebrow-border`, padding `32px 20px` (tablet `32px 32px`), scrolls if taller than the screen. Links stacked, gap 24px. Groups are accordions. The Services row is a link plus a separate chevron button. Primary button at the bottom, full width. Focus is trapped inside the panel, Escape closes it, page scroll is locked while open, and it closes on navigation.
 
 ### 6.13 Footer `[P]`
-- Bg `--ink-950`, text `--code-text`. Padding `64px 40px 32px` (tablet `64 32 32`, mobile `48 20 24`).
-- 3 columns (brand + bio, links, contact), gap 32px; 1 column on mobile.
-- Headings Space Grotesk 600 18px `--surface-50`. Links Poppins 400 14px `--code-text`, hover `--code-accent`.
-- Bottom bar: 1px top border `--code-border`, copyright JetBrains Mono 400 13px `--code-title`.
-- Social icons 20px stroke, `--code-text`, hover `--code-accent`.
+- **Surface:** bg `--ink-950`, text `--code-text`. Padding `64px 40px 32px` (tablet `64 32 32`, mobile `48 20 24`). Inner content max 1200px. Sits at the bottom of the page even on short pages.
+- **Desktop layout (≥1025px):** 12-column grid. Left, 5 columns: brand block. Right, 7 columns: three equal columns Pages, Services, Contact. Gap 32px between the two sides.
+- **Tablet:** brand block full width on top, then Pages, Services, Contact as 3 columns. **Mobile:** everything in 1 column. Gap between blocks 48px, between columns 32px.
+- **Brand block:** logo image `logo-header.png`, height 56px mobile / 64px tablet / 80px desktop, then the positioning statement under it (Poppins 400, 18px mobile / 20px tablet and up, line-height 1.6, `--surface-50`, max-width 28rem). Statement copy lives in `site.ts` (`positioning`), max 20 words (CONTENT.md), pending owner approval.
+- **Link columns:** headings (`h2`) Space Grotesk 600 18px `--surface-50`. Links Poppins 400 14px `--code-text`, min-height 32px, hover `--code-accent`. Pages: Home, About, Portfolio, FAQs, Schedule Consultation, Contact. Services: Web Development, Mobile App Development, AI & LLM Solutions. Data lives in `nav.ts`.
+- **Contact column:** email (`mailto:`), phone (`tel:`), location. Each with a 16px stroke icon, same link style. Data lives in `site.ts`.
+- **Bottom bar:** margin-top 48px, padding-top 24px, 1px top border `--code-border`. Left: copyright "© 2026 Aazib Ali. All rights reserved." and the Privacy Policy link. Right: 16px coffee icon and "Built with Next.js, Tailwind CSS and a lot of coffee." All in JetBrains Mono 400 13px `--code-title`, link hover `--code-accent`. Stacks vertically below 768px.
+- **Socials:** icons 20px stroke, `--code-text`, hover `--code-accent`. Hidden until real links exist in `site.ts`. lucide-react has no brand icons, so inline SVGs are used.
 
 ### 6.14 Forms `[P]`
 - Container: card style, padding 32px (mobile 20px).
@@ -335,6 +351,7 @@ Eyebrow (light pill) + H2 section + lead paragraph, all centered (see alignment 
 | Button sheen (ghost, outline) | 1000ms in, 500ms out, `--ease-smooth`, hover-capable devices only | `[P]` |
 | Card hover | 500ms `--ease-smooth` | `[P]` |
 | Form field focus | 300ms `--ease-smooth` | `[P]` |
+| Header scroll state, nav dropdown, nav and footer link colour | 300ms `--ease-smooth` | `[P]` |
 | Scroll reveal | process + strengths only, JS-enabled | `[S]` |
 | Scroll reveal values | 600ms `--ease-smooth`, fade + `translateY(16px)`, 0.15 threshold, plays once. Content is visible by default and hidden only when below the fold. | `[P]` |
 | `prefers-reduced-motion: reduce` | disable carousel, reveals, float, sheen | `[P]` |
@@ -349,19 +366,22 @@ No parallax, bounce, or auto-playing video.
 - Headlines: Title Case, benefit-led. `[S]`
 - Taglines: short, end with a period ("Your Website, Built to Perform."). `[S]`
 - Buttons: Title Case, 2–5 words. Card links end with ` →`; downloads end with ` ↓`. `[S]`
+- Header button label: "Contact Me". `[P]`
 - Services names: Web Development · Mobile App Development · AI & LLM Solutions. Use `&`, not "and". `[S]`
 - Apostrophes: always typographic `’` (the source mixes `’` and `'`). `[P]`
 - Eyebrows: short, 2–4 words ("Open For Freelance", "A Bit About Me", "My Journey", "My Location", "Let’s Connect"). `[S]`
 - Location: Islamabad, Pakistan. Contact line uses Aldrich. `[S]`
+- Footer "built with" line is a deliberate light-tone exception (owner request). `[P]`
 
 ---
 
 ## 9. ACCESSIBILITY `[P]`
 
 - `--slate-600` and `--ink-900` on `--surface-50/100/white` pass WCAG AA. Never put `--blue-600` text on `--blue-900`.
-- `:focus-visible`: 2px outline `--blue-600`, offset 2px (on dark: `--white`).
-- `lang="en"`, `aria-label` on regions, `aria-hidden` on decorative icons, real alt text on logos.
-- Body text never below 13px. Touch targets at least 44px.
+- `:focus-visible`: 2px outline `--blue-600`, offset 2px (on dark surfaces such as the Header and Footer: `--white`).
+- `lang="en"`, `aria-label` on regions and nav landmarks, `aria-hidden` on decorative icons, real alt text on logos. Dropdown triggers use `aria-expanded` and `aria-controls`; the current page link uses `aria-current="page"`.
+- Body text never below 13px. Touch targets at least 44px for header and mobile nav controls; footer links at least 32px.
+- Header is transparent at the top, so every page needs a dark hero behind it.
 
 ---
 
@@ -393,7 +413,13 @@ Before finishing any task, confirm:
 
 ## 12. STILL UNCONFIRMED (NEEDS YOUR INPUT)
 
-- Real logo / brand mark
-- Final nav items
-- Footer text, links, socials
+- Original logo with tagline (for light backgrounds). The white header variant is in `public/images/logo-header.png`.
+- Footer positioning text approval (draft in `site.ts`) and social links
+- Booking link for "Schedule Consultation" (Calendly or Cal.com)
 - Whether mobile card grid is 1 column (assumed)
+`````
+`````
+
+- **STATE.md mein maine kya maana:** Button, Card, Eyebrow, IconNode, SectionIntro `[x]` hain (preview approve aur build pass). Header, MobileNav, Footer `[~]` hain, kyunki scroll-header, Services link aur Footer ke baad full build result tumne paste nahi kiya. Pass ho jaye to `[x]` bol dena.
+- **Footer logo/text diff:** DESIGN.md 6.13 mein wahi spec hai (logo 56/64/80px, Poppins 400 text). Agar wo diff abhi apply nahi kiya, pehle kar lo, warna code aur doc alag ho jayenge.
+- **Dhyan:** `PROJECT.md`, `AGENTS.md` aur `CLAUDE.md` mein abhi `/work` aur purana nav likha hai. STATE.md ke Open Questions mein note kar diya hai, jab bologe tab unka diff bana dunga.
