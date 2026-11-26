@@ -1,4 +1,4 @@
-# DESIGN.md — Aazib Portfolio (v2 · Final)
+# DESIGN.md — AAZIB PORTFOLIO (V2 · FINAL)
 
 > **Single source of truth for all UI.** Agents must follow it exactly.
 > Never invent a color, font, size, radius, shadow or spacing value that is not listed here. If a value is missing, stop and add it here first.
@@ -12,7 +12,7 @@ Untagged rules in a `[S]` section inherit its tag.
 
 ---
 
-## 1. Brand & Vibe `[S]`
+## 1. BRAND & VIBE `[S]`
 
 Freelance developer portfolio (web, mobile, AI). Calm, precise, technical. Dark navy hero with dot-grid, cool-gray light sections, terminal/code details, mono labels. Never playful, never decorative.
 
@@ -20,7 +20,7 @@ Keywords: engineered, minimal, blue-on-gray, terminal-inspired, high contrast.
 
 ---
 
-## 2. Tokens
+## 2. TOKENS
 
 Use these as CSS variables. Never hardcode hex values in components.
 
@@ -70,7 +70,6 @@ Use these as CSS variables. Never hardcode hex values in components.
   --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   --font-tag: var(--font-aldrich), system-ui, sans-serif;
 
-
   /* Radius [S] */
   --r-btn: 4px;
   --r-card: 5px;
@@ -86,6 +85,14 @@ Use these as CSS variables. Never hardcode hex values in components.
   --shadow-card: 0 2px 12px rgba(17, 21, 27, 0.04);
   --shadow-card-hover: 0 8px 24px rgba(42, 91, 176, 0.12);
   --ring-node-hover: 0 0 0 4px rgba(42, 91, 176, 0.12);
+  --ring-field-focus: 0 0 0 3px rgba(42, 91, 176, 0.12);   /* [P] */
+
+  /* Motion [P] */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Button sheen [P] */
+  --shine-ink: rgba(17, 21, 27, 0.12);
+  --shine-blue: rgba(42, 91, 176, 0.16);
 }
 ```
 
@@ -108,7 +115,7 @@ Only these colors exist. No `#000`, no extra blues, no gradients except the hero
 
 ---
 
-## 3. Typography `[S]`
+## 3. TYPOGRAPHY `[S]`
 
 Load via Google Fonts, `display=swap`: Space Grotesk 600/700, Poppins 400, JetBrains Mono 400/500, Aldrich 400.
 
@@ -139,7 +146,7 @@ Load via Google Fonts, `display=swap`: Space Grotesk 600/700, Poppins 400, JetBr
 
 ---
 
-## 4. Layout
+## 4. LAYOUT
 
 ### Breakpoints `[S]`
 | Name | Range |
@@ -181,7 +188,7 @@ About: Hero → `--surface-50` content (+ timeline). Contact: Hero → intro/map
 
 ---
 
-## 5. Hero Background `[S]`
+## 5. HERO BACKGROUND `[S]`
 
 Used on every page hero (class `.hero`). Tokenized, no `!important` needed in code (Elementor needs it).
 
@@ -207,34 +214,38 @@ Used on every page hero (class `.hero`). Tokenized, no `!important` needed in co
 
 ---
 
-## 6. Components
+## 6. COMPONENTS
 
-### 6.1 Buttons `[S]` (colors, border, radius) · `[P]` (size)
+### 6.1 Buttons `[S]` (colors, border, radius) · `[P]` (size, motion)
 All: JetBrains Mono 500, **2px border, radius 4px**. Size `[P]`: padding `14px 28px`, min-height 48px, full width on mobile when alone in a row. Hero button row: flex, gap 16px, centered on tablet.
 
 | Variant | Use | Bg | Text | Border | Hover |
 |---|---|---|---|---|---|
 | Primary (dark bg) | "Let's Work Together", CTA, "Download My Resume ↓" | `--white` | `--ink-950` | `--white` | bg `--ink-950`, text `--white`, border `--ink-950` |
-| Ghost (dark bg) | "Explore My Work" | transparent | `--white` | `--white` | bg `--white`, text `--ink-950` |
-| Outline (light bg) | "Explore All Services" | transparent | `--blue-600` | `--blue-600` `[I]` | text `--blue-700` |
+| Ghost (dark bg) | "Explore My Work" | transparent | `--white` | `--white` | bg `--white`, text `--ink-950`, sheen sweep |
+| Outline (light bg) | "Explore All Services" | transparent | `--blue-600` | `--blue-600` `[I]` | text `--blue-700`, sheen sweep |
 | Link-button | inside cards | transparent | `--blue-600` | none, padding 0, margin 0 | `float` animation, transition 1.3s |
 
-Link-button: right-aligned, label ends with ` →`.
+Link-button: right-aligned, label ends with ` →`, min-height 44px (touch target). Float `[P]`: `translateY(-4px)`, 1.3s `--ease-smooth`.
 Form submit `[P]`: bg `--blue-600`, text `--white`, border `--blue-600`; hover bg/border `--blue-700`.
+Colour transition `[P]`: 500ms `--ease-smooth`. Sheen `[P]` (ghost, outline only): skewed bar sweeps left to right on hover, colour `--shine-ink` (ghost) / `--shine-blue` (outline), hover-capable devices only.
+Disabled `[P]`: opacity 60%, `not-allowed` cursor.
 
 ### 6.2 Eyebrow pill `[S]`
 JetBrains Mono 500, 16px (mobile 14), padding `7px 20px`, radius `--r-pill`, 1px border `--glass-eyebrow-border`, gradient 110° `--glass-eyebrow-from` → `--glass-eyebrow-to`, text `--white`, `align-self: flex-start`.
-On light sections the eyebrow is plain text (no pill) in `--blue-700`.
+On light sections the eyebrow is a pill: bg `--white`, 1px `--border-strong`, text `--blue-700`, same padding and radius. Centered when inside a Section Intro.
 
 ### 6.3 Card `[S]`
 Bg `--white`, 1px `--border`, radius 5px, padding 16px, gap 12px, `--shadow-card`.
-Hover: border `--border-strong`, `--shadow-card-hover`.
+Hover: border `--border-strong`, `--shadow-card-hover`. Transition `[P]`: 500ms `--ease-smooth`.
 Content order: icon image (24% width desktop, 18% mobile, auto tablet) → H2 title → Aldrich tagline → paragraph → divider (gap 0, `--border-strong` `[I]`) → link-button.
+Divider `[P]`: sits flush above the link-button row (zero gap between them).
 Project cards: same, tagline is the category in 12px Aldrich.
 
 ### 6.4 Icon node `[S]`
 Circle, bg `--surface-100`, 1px `--border-strong`, icon `--blue-600`. Stroke icons: 24 viewBox, stroke 2, round caps/joins (Lucide style).
 Hover (pointer devices only): bg and border `--blue-600`, icon `--white`, `--ring-node-hover`. Transition 0.6s (process) / 0.5s (strengths) ease.
+Sizes: process node 36/40/44, icon 16/18/20 (6.5). Strengths node 32/34/36, icon 14/16/18 (6.6).
 
 ### 6.5 Process timeline `[S]`
 Vertical list, node left, track 2px `rgba(74,85,101,0.20)` with `--blue-600` fill animating on scroll. Section bg `--surface-50`, text `--slate-600`, titles Space Grotesk 600 `--ink-900`.
@@ -300,14 +311,18 @@ Full-width embedded map, height 560px. Section intro above: eyebrow "My Location
 ### 6.14 Forms `[P]`
 - Container: card style, padding 32px (mobile 20px).
 - Label: JetBrains Mono 500, 14px, `--ink-900`, 6px above field.
-- Input/textarea: bg `--white`, 1px `--border-strong`, radius 4px, padding `12px 16px`, Poppins 400 16px, text `--ink-900`, placeholder `--slate-600` at 60%. Textarea min-height 140px.
-- Focus: border `--blue-600` + `0 0 0 3px rgba(42,91,176,0.12)`.
-- Error: border + message `--error`. Success: border + message `--success`. Messages Poppins 400 13px.
+- Input/textarea: bg `--white`, 1px `--border-strong`, radius 4px, padding `12px 16px`, Poppins 400 16px, text `--ink-900`, placeholder `--slate-600` at 60%. Textarea min-height 140px, vertical resize only.
+- Focus: border `--blue-600` + `--ring-field-focus` (`0 0 0 3px rgba(42,91,176,0.12)`). The global `:focus-visible` outline stays on (accessibility).
+- Error: border + message `--error`. Success: border + message `--success`. Messages Poppins 400 13px, 6px below the field. No focus ring on error/success.
+- Disabled: opacity 60%, `not-allowed` cursor.
 - Field gap 16px.
+
+### 6.15 Section intro `[P]`
+Eyebrow (light pill) + H2 section + lead paragraph, all centered (see alignment rules). Gap between the three 16px. Max width 768px, centered. Space below the intro before the section content: 24px mobile · 32px tablet · 40px desktop. Dark-section variant (white H2, white eyebrow pill) is not defined yet: add it here when the carousel or CTA needs it.
 
 ---
 
-## 7. Motion
+## 7. MOTION
 
 | Item | Value | Tag |
 |---|---|---|
@@ -315,14 +330,20 @@ Full-width embedded map, height 560px. Section intro above: eyebrow "My Location
 | Strength node | 500ms ease | `[S]` |
 | Process node | 600ms ease | `[S]` |
 | Link-button | float animation, 1.3s | `[S]` |
+| Link-button float distance | `translateY(-4px)`, `--ease-smooth` | `[P]` |
+| Button colour hover | 500ms `--ease-smooth` | `[P]` |
+| Button sheen (ghost, outline) | 1000ms in, 500ms out, `--ease-smooth`, hover-capable devices only | `[P]` |
+| Card hover | 500ms `--ease-smooth` | `[P]` |
+| Form field focus | 300ms `--ease-smooth` | `[P]` |
 | Scroll reveal | process + strengths only, JS-enabled | `[S]` |
-| `prefers-reduced-motion: reduce` | disable carousel, reveals, float | `[P]` |
+| Scroll reveal values | 600ms `--ease-smooth`, fade + `translateY(16px)`, 0.15 threshold, plays once. Content is visible by default and hidden only when below the fold. | `[P]` |
+| `prefers-reduced-motion: reduce` | disable carousel, reveals, float, sheen | `[P]` |
 
 No parallax, bounce, or auto-playing video.
 
 ---
 
-## 8. Content & Copy
+## 8. CONTENT & COPY
 
 - Voice: first person, direct, confident. `[S]`
 - Headlines: Title Case, benefit-led. `[S]`
@@ -335,7 +356,7 @@ No parallax, bounce, or auto-playing video.
 
 ---
 
-## 9. Accessibility `[P]`
+## 9. ACCESSIBILITY `[P]`
 
 - `--slate-600` and `--ink-900` on `--surface-50/100/white` pass WCAG AA. Never put `--blue-600` text on `--blue-900`.
 - `:focus-visible`: 2px outline `--blue-600`, offset 2px (on dark: `--white`).
@@ -358,7 +379,7 @@ No parallax, bounce, or auto-playing video.
 
 ---
 
-## 11. Agent Checklist
+## 11. AGENT CHECKLIST
 
 Before finishing any task, confirm:
 1. Every color is a token from Section 2.
@@ -370,7 +391,7 @@ Before finishing any task, confirm:
 
 ---
 
-## 12. Still Unconfirmed (needs your input)
+## 12. STILL UNCONFIRMED (NEEDS YOUR INPUT)
 
 - Real logo / brand mark
 - Final nav items

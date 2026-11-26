@@ -64,4 +64,10 @@
   --shadow-card: 0 2px 12px rgba(17, 21, 27, 0.04);
   --shadow-card-hover: 0 8px 24px rgba(42, 91, 176, 0.12);
   --ring-node-hover: 0 0 0 4px rgba(42, 91, 176, 0.12);
+  --ring-field-focus: 0 0 0 3px rgba(42, 91, 176, 0.12);
+  /* Motion */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Button sheen */
+  --shine-ink: rgba(17, 21, 27, 0.12);
+  --shine-blue: rgba(42, 91, 176, 0.16);
 }
