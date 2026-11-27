@@ -145,6 +145,87 @@
       transform 600ms var(--ease-smooth);
     transition-delay: var(--reveal-delay, 0ms);
   }
+
+  .marquee-viewport {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--white) 8%,
+      var(--white) 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--white) 8%,
+      var(--white) 92%,
+      transparent 100%
+    );
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      width: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .marquee-copy {
+      display: none;
+    }
+  }
+
+  .process-step {
+    --node: 36px;
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    .process-step {
+      --node: 40px;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .process-step {
+      --node: 44px;
+    }
+  }
+
+  .process-step:not(:last-child)::before,
+  .process-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--node) / 2);
+    left: calc(var(--node) / 2 - 1px);
+    width: 2px;
+    height: 100%;
+  }
+
+  .process-step:not(:last-child)::before {
+    background-color: var(--track);
+  }
+
+  .process-step:not(:last-child)::after {
+    background-color: var(--blue-600);
+    transform: scaleY(var(--fill, 0));
+    transform-origin: top;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

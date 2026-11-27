@@ -17,6 +17,7 @@
   /* Borders */
   --border: #E3E8EF;
   --border-strong: #D3DAE3;
+  --track: rgba(74, 85, 101, 0.2);
 
   /* Glass */
   --glass-eyebrow-from: #FFFFFF1F;

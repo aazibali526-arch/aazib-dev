@@ -19,7 +19,7 @@ export function SectionIntro({
   return (
     <div
       className={cn(
-        "mx-auto flex max-w-3xl flex-col items-center gap-4 text-center",
+        "mx-auto mb-6 flex max-w-3xl flex-col items-center gap-4 text-center md:mb-8 lg:mb-10",
         className,
       )}
     >

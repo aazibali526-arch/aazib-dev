@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import { cardSurface } from "@/components/ui/cardStyles";
 import { cn } from "@/lib/utils";
 
-interface CardImage {
+export interface CardImage {
   src: string;
   alt: string;
   width: number;
@@ -36,14 +37,7 @@ export function Card({
   className,
 }: CardProps) {
   return (
-    <article
-      className={cn(
-        "flex flex-col gap-3 rounded-card border border-border bg-white p-4 shadow-card",
-        "transition-[border-color,box-shadow] duration-500 ease-smooth",
-        "hover:border-border-strong hover:shadow-card-hover",
-        className,
-      )}
-    >
+    <article className={cn(cardSurface, className)}>
       {image ? (
         <Image
           src={image.src}

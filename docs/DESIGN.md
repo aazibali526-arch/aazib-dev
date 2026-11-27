@@ -44,6 +44,7 @@ Use these as CSS variables. Never hardcode hex values in components.
   /* Borders */
   --border: #E3E8EF;        /* card border */                                /* [S] */
   --border-strong: #D3DAE3; /* card hover, icon-node border, divider */      /* [S]/[I] */
+  --track: rgba(74, 85, 101, 0.2); /* [S] value from 6.5 */
 
   /* Glass */
   --glass-eyebrow-from: #FFFFFF1F;                                           /* [S] */
@@ -257,6 +258,8 @@ Sizes: process node 36/40/44, icon 16/18/20 (6.5). Strengths node 32/34/36, icon
 ### 6.5 Process timeline `[S]`
 Vertical list, node left, track 2px `rgba(74,85,101,0.20)` with `--blue-600` fill animating on scroll. Section bg `--surface-50`, text `--slate-600`, titles Space Grotesk 600 `--ink-900`.
 
+Track uses `--track`. Each step draws its own segment (node centre to next node centre); fill follows scroll progress (list top reaches 60% of viewport = 0, list bottom there = 1). Reduced motion: fully filled. List max width 768px, centered. `[P]`
+
 | Var | Mobile | Tablet | Desktop |
 |---|---|---|---|
 | Node | 36 | 40 | 44 |
@@ -268,6 +271,8 @@ Vertical list, node left, track 2px `rgba(74,85,101,0.20)` with `--blue-600` fil
 
 ### 6.6 Strengths grid `[S]`
 2 columns at all sizes. Icon node + Space Grotesk 600 label `--ink-900`, line-height 1.3. Transparent bg.
+
+Grid max width 768px, centered. `[P]`
 
 | Var | Mobile | Tablet | Desktop |
 |---|---|---|---|
@@ -281,6 +286,8 @@ Vertical list, node left, track 2px `rgba(74,85,101,0.20)` with `--blue-600` fil
 ### 6.7 Tech carousel `[S]`
 Bg `--ink-950`. Logos monochrome white, opacity .75; hover: color, opacity 1, scale 1.12 (300ms ease). Infinite linear scroll 40s, edge fade mask 8% / 92%. Viewport padding 12px 0 (8px ≤640).
 
+Until logo files exist, items are text names (JetBrains Mono 500, 14px, 16px from 640px). The list is repeated 3 times per half so it fills wide screens. Repeats and the copy are `aria-hidden`. Reduced motion: static, centered, wrapping. `[P]`
+
 | Var | Desktop | ≤1024 | ≤640 |
 |---|---|---|---|
 | Slot | 160 | 130 | 104 |
@@ -290,13 +297,19 @@ Bg `--ink-950`. Logos monochrome white, opacity .75; hover: color, opacity 1, sc
 ### 6.8 Code window `[S]`
 Radius 0, 2px `--code-border`, bg `--code-bg`, JetBrains Mono 13.5px/1.7, text `--code-text`. Title bar height 2.7em with red/yellow/green dots (.82em). Tab bar height 2.6em, active tab text `--code-tab-text` with 2px `--code-accent` top inset.
 
+Bars use `--code-bg` with 1px `--code-border` dividers, padding 16px, dot gap 8px, line numbers `--code-muted`. Token colours: keys `--code-accent`, strings `--code-tab-text`, punctuation `--code-muted`, other `--code-text`. Content is real facts only (`codeWindow.ts`). `[P]`
+
 ### 6.9 Closing CTA `[S]`
 Section bg: cover image, centered, no-repeat. Glass panel: gradient 110° `--glass-cta-from` → `--glass-cta-to`, 1px `--glass-cta-border`, radius 5px.
 Panel padding: desktop `36px 32px` · tablet `28px 26px` · mobile `20px 18px`.
 H2 `--white` left-aligned; paragraph `--on-glass` 18px Poppins; one Primary button.
 
+Panel max width 768px, left inside the 1200px container. Until a cover image exists the section uses the `.hero` background. `[P]`
+
 ### 6.10 Testimonials `[S]`
 Carousel, 5 items: name, company, review. Short, plain, human quotes. Colors from tokens only.
+
+Card surface, 1 / 2 / 3 slides per view (mobile / tablet / desktop), gap 16px, 44px round prev/next buttons centered below (blue fill on hover), no autoplay. `[P]`
 
 ### 6.11 Map (Contact) `[S]`
 Full-width embedded map, height 560px. Section intro above: eyebrow "My Location", H2, lead (centered).
@@ -335,6 +348,9 @@ Full-width embedded map, height 560px. Section intro above: eyebrow "My Location
 
 ### 6.15 Section intro `[P]`
 Eyebrow (light pill) + H2 section + lead paragraph, all centered (see alignment rules). Gap between the three 16px. Max width 768px, centered. Space below the intro before the section content: 24px mobile · 32px tablet · 40px desktop. Dark-section variant (white H2, white eyebrow pill) is not defined yet: add it here when the carousel or CTA needs it.
+
+### 6.16 Hero `[P]`
+Text column left (H1 max 768px, lead max 672px), `visual` slot right at 50/50 on desktop with 32px gap. On tablet and mobile the visual sits below the buttons. Only Home uses `CodeWindow`.
 
 ---
 

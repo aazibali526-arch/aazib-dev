@@ -1,0 +1,2 @@
+export const cardSurface =
+  "flex flex-col gap-3 rounded-card border border-border bg-white p-4 shadow-card transition-[border-color,box-shadow] duration-500 ease-smooth hover:border-border-strong hover:shadow-card-hover";
