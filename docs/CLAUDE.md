@@ -2,22 +2,22 @@
 
 Portfolio site for **Aazib Ali**, a freelance developer in Islamabad, Pakistan (web, mobile, AI/LLM solutions). Deployed on Vercel.
 
-**Read `docs/DESIGN.md` before writing any UI.** It is the single source of truth for colors, type, spacing, components, and copy. If it conflicts with this file for anything visual, DESIGN.md wins.
+**Read `docs/DESIGN.md` before writing any UI.** It is the single source of truth for colors, type, spacing, components, and copy. If it conflicts with this file for anything visual, `docs/DESIGN.md` wins.
 
 ---
 
 ## Stack
 
-- Next.js (App Router) + TypeScript (strict)
-- Tailwind CSS v4 (theme defined in CSS via `@theme`, no `tailwind.config.js` unless needed)
+- Next.js 16 (App Router, Turbopack, `cacheComponents: true`) + TypeScript (strict)
+- Tailwind CSS v4 (theme defined in CSS via `@theme` in `src/app/globals.css`)
 - `next/font/google`: Space Grotesk, Poppins, JetBrains Mono, Aldrich
-- `lucide-react` icons, `motion` for animation, `embla-carousel-react` for testimonials
-- `react-hook-form` + `zod` + `@hookform/resolvers` for forms
+- `lucide-react` icons, `embla-carousel-react` for testimonials
+- `react-hook-form` + `zod` (v4) + `@hookform/resolvers` for forms
 - `resend` for email (via Server Action)
-- `clsx` + `tailwind-merge` via a `cn()` helper in `src/lib/utils.ts`
+- `clsx` + `tailwind-merge` via `cn()` in `src/lib/utils.ts`
 - Package manager: **pnpm** only. Never use npm or yarn.
 
-The installed Next.js version may be newer than your training data. When unsure about an API, check `node_modules/next/dist/docs/` before guessing. Zod is v4: use v4 APIs.
+The installed Next.js version may be newer than your training data. Always read the relevant guide in `node_modules/next/dist/docs/` before writing Next.js code. Zod is v4: use v4 APIs.
 
 ## Commands
 
@@ -31,17 +31,17 @@ pnpm exec tsc --noEmit   # type check (must pass)
 ## Folder structure
 
 ```
-docs/            DESIGN.md and other context files
+docs/            DESIGN.md, STATE.md, PROJECT.md, CONTENT.md, CLAUDE.md, AGENTS.md
 public/          images/{projects,services,tech}, icons
-src/app/         layout.tsx, page.tsx, about/, contact/, sitemap.ts, robots.ts
+src/app/         layout.tsx, page.tsx, about/, contact/, services/, portfolio/, faqs/, schedule/, privacy/, sitemap.ts, robots.ts
 src/components/
-  ui/            primitives: Button, Card, Eyebrow, IconNode, Input, Textarea
-  layout/        Header, Footer, MobileNav
+  ui/            primitives: Button, Card, Eyebrow, Field, IconNode, Input, Textarea
+  layout/        Header, DesktopNav, NavDropdown, MobileNav, navStyles.ts, Footer
   sections/      page blocks: Hero, Services, TechCarousel, Work, Process,
                  Strengths, Testimonials, ClosingCTA, ContactForm, MapEmbed, CodeWindow
   shared/        SectionIntro, Reveal
-src/data/        typed content: services, projects, process, strengths, testimonials, nav
-src/lib/         fonts.ts, utils.ts, seo.ts
+src/data/        typed content: site, nav, hero, services, projects, process, strengths, testimonials
+src/lib/         fonts.ts, navigation.ts, seo.ts, utils.ts
 src/actions/     contact.ts (Server Action)
 src/styles/      tokens.css (the ONLY place hex values live)
 ```

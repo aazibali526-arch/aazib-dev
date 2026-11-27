@@ -4,11 +4,12 @@ This file is for any AI coding agent (Claude Code, Cursor, Copilot, Codex, Gemin
 
 ## Read first, in this order
 
-1. `CLAUDE.md`: stack, folder structure, code rules, workflow. **It applies to every agent, not only Claude.**
+1. `docs/CLAUDE.md`: stack, folder structure, code rules, workflow. **It applies to every agent, not only Claude.**
 2. `docs/DESIGN.md`: the single source of truth for all UI (colors, type, spacing, components, copy).
-3. `STATE.md`: current tasks.
-4. `CONTENT.md`: copy and tone of voice.
-5. `PROJECT.md`: what the site is, pages, and features.
+3. `docs/STATE.md`: current tasks and decisions.
+4. `docs/CONTENT.md`: SEO and copywriting playbook.
+5. `docs/PROJECT.md`: what the site is, pages, and features.
+6. Root `AGENTS.md`: Next.js 16 version notice (keep intact).
 
 If any of these conflict: **DESIGN.md wins for visuals, CLAUDE.md wins for code, the user wins over both.**
 
@@ -47,7 +48,7 @@ pnpm build
 
 Then:
 - Check 375px, 768px, and 1280px widths, plus hover and focus states.
-- Update `STATE.md`.
+- Update `docs/STATE.md`.
 - If a design value changed, update `docs/DESIGN.md` in the same change.
 - Summarize what you changed and which files you touched. Do not modify files outside the task's scope.
 

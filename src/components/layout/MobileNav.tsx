@@ -13,20 +13,49 @@ import { cn } from "@/lib/utils";
 
 export function MobileNav() {
   const pathname = usePathname();
-  const [openedAt, setOpenedAt] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(pathname);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const open = openedAt === pathname;
+
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    if (open) setOpen(false);
+    if (openGroup !== null) setOpenGroup(null);
+  }
+
+  function closeMenu() {
+    setOpen(false);
+    setOpenGroup(null);
+  }
 
   useEffect(() => {
     const query = window.matchMedia("(min-width: 1025px)");
     const handleChange = () => {
-      if (query.matches) setOpenedAt(null);
+      if (query.matches) {
+        setOpen(false);
+        setOpenGroup(null);
+      }
     };
     query.addEventListener("change", handleChange);
     return () => query.removeEventListener("change", handleChange);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const handlePointerDown = (event: Event) => {
+      if (
+        event.target instanceof Node &&
+        !rootRef.current?.contains(event.target)
+      ) {
+        setOpen(false);
+        setOpenGroup(null);
+      }
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -41,7 +70,7 @@ export function MobileNav() {
     if (!open) return;
 
     if (event.key === "Escape") {
-      setOpenedAt(null);
+      closeMenu();
       buttonRef.current?.focus();
       return;
     }
@@ -73,7 +102,13 @@ export function MobileNav() {
         aria-expanded={open}
         aria-controls="mobile-nav"
         aria-label={open ? "Close menu" : "Open menu"}
-        onClick={() => setOpenedAt(open ? null : pathname)}
+        onClick={() => {
+          if (open) {
+            closeMenu();
+          } else {
+            setOpen(true);
+          }
+        }}
         className="flex size-11 items-center justify-center rounded-btn text-surface-50 focus-visible:outline-white"
       >
         {open ? (
@@ -117,7 +152,7 @@ export function MobileNav() {
                       <Link
                         href={item.href}
                         aria-current={pathname === item.href ? "page" : undefined}
-                        onClick={() => setOpenedAt(null)}
+                        onClick={closeMenu}
                         className={cn(navLinkBase, groupActive && navLinkActive)}
                       >
                         {item.label}
@@ -161,7 +196,7 @@ export function MobileNav() {
                             <Link
                               href={child.href}
                               aria-current={childActive ? "page" : undefined}
-                              onClick={() => setOpenedAt(null)}
+                              onClick={closeMenu}
                               className={cn(navLinkBase, childActive && navLinkActive)}
                             >
                               {child.label}
@@ -181,7 +216,7 @@ export function MobileNav() {
                 <Link
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  onClick={() => setOpenedAt(null)}
+                  onClick={closeMenu}
                   className={cn(navLinkBase, active && navLinkActive)}
                 >
                   {item.label}
@@ -195,7 +230,7 @@ export function MobileNav() {
           <Button
             href={headerCta.href}
             fullWidthOnMobile
-            onClick={() => setOpenedAt(null)}
+            onClick={closeMenu}
           >
             {headerCta.label}
           </Button>

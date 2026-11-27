@@ -15,7 +15,7 @@ export function Reveal({ children, delay = 0, className }: RevealProps) {
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || el.dataset.reveal === "shown") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (el.getBoundingClientRect().top < window.innerHeight) return;
 

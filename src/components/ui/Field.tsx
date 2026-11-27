@@ -48,7 +48,13 @@ export function Field({
       {message ? (
         <p
           id={`${id}-message`}
-          role={status === "error" ? "alert" : "status"}
+          role={
+            status === "error"
+              ? "alert"
+              : status === "success"
+                ? "status"
+                : undefined
+          }
           className={cn(
             "mt-1.5 font-body text-[13px] leading-normal",
             messageClasses[status],

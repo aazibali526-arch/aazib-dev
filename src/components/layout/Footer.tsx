@@ -4,6 +4,7 @@ import Link from "next/link";
 import { footerLinks, privacyLink } from "@/data/nav";
 import type { NavLink } from "@/data/nav";
 import { site } from "@/data/site";
+import { cn } from "@/lib/utils";
 
 const headingClass =
   "font-display text-lg font-semibold leading-snug text-surface-50";
@@ -108,12 +109,15 @@ export function Footer() {
             </p>
             <Link
               href={privacyLink.href}
-              className={`inline-flex min-h-8 items-center transition-colors duration-300 ease-smooth hover:text-code-accent focus-visible:outline-white ${metaClass}`}
+              className={cn(
+                metaClass,
+                "inline-flex min-h-8 items-center transition-colors duration-300 ease-smooth hover:text-code-accent focus-visible:outline-white",
+              )}
             >
               {privacyLink.label}
             </Link>
           </div>
-          <p className={`inline-flex items-center gap-2 ${metaClass}`}>
+          <p className={cn(metaClass, "inline-flex items-center gap-2")}>
             <Coffee aria-hidden="true" strokeWidth={2} className="size-4 shrink-0" />
             Built with {site.builtWith.join(", ")} and a lot of coffee.
           </p>

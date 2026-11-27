@@ -51,7 +51,7 @@ const variants: Record<ButtonVariant, string> = {
 };
 
 function isInternal(href: string): boolean {
-  return href.startsWith("/") || href.startsWith("#");
+  return (href.startsWith("/") && !href.startsWith("//")) || href.startsWith("#");
 }
 
 export function Button({
@@ -79,12 +79,14 @@ export function Button({
       );
     }
 
-    const isWeb = /^https?:\/\//.test(href);
+    const isExternalWeb = /^(https?:)?\/\//i.test(href);
     return (
       <a
         href={href}
         className={classes}
-        {...(isWeb ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        {...(isExternalWeb
+          ? { target: "_blank", rel: "noopener noreferrer" }
+          : {})}
         {...anchorProps}
       >
         {children}

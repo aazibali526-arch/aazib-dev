@@ -1,41 +1,41 @@
-# PROJECT.md: aazib-dev
+# PROJECT.md — aazib-dev
 
-> What we are building, why, and exactly which pages and features it includes.
-> Visuals live in `docs/DESIGN.md`. Code rules live in `CLAUDE.md`. Copy rules live in `CONTENT.md`. Tasks live in `STATE.md`.
+> What we are building, why, and which pages and features it includes.
+> Visuals live in `docs/DESIGN.md`. Code rules live in `docs/CLAUDE.md`. Copy & SEO rules live in `docs/CONTENT.md`. Task tracking lives in `docs/STATE.md`.
 
 ---
 
 ## 1. Overview
 
-**Project:** Personal portfolio and lead-generation website
-**Owner:** Aazib Ali, freelance developer
-**Location:** Islamabad, Pakistan (works with clients worldwide)
-**Services:** Web Development · Mobile App Development · AI & LLM Solutions
-**Stack:** Next.js (App Router), TypeScript, Tailwind CSS v4, deployed on Vercel
-**Domain:** TBD
+- **Project:** Personal portfolio and lead-generation website
+- **Owner:** Aazib Ali — freelance full-stack, mobile, and AI developer
+- **Location:** Islamabad, Pakistan (working with clients worldwide)
+- **Services:** Web Development · Mobile App Development · AI & LLM Solutions
+- **Stack:** Next.js 16 (App Router, Turbopack), TypeScript, Tailwind CSS v4, deployed on Vercel
+- **Domain:** TBD
 
 ## 2. Goals
 
-1. Turn visitors into project inquiries (primary goal).
-2. Build trust through real projects, process, and client feedback.
-3. Rank for service-related searches (web, mobile, AI developer).
-4. Load fast and work flawlessly on mobile.
+1. Convert visitors into qualified project inquiries (primary goal).
+2. Build trust through real projects, clear engineering process, and verified client feedback.
+3. Rank for high-intent freelance web, mobile, and AI developer queries.
+4. Load fast, stay accessible, and work cleanly across mobile, tablet, and desktop.
 
-**Primary conversion:** a completed contact form submission.
-**Secondary conversions:** email click, phone click, resume download.
+- **Primary conversion:** Completed contact form submission (or consultation booking).
+- **Secondary conversions:** Email click, phone click, resume download.
 
 ## 3. Audience
 
-- Startup founders and small business owners who need a website, app, or AI feature built.
-- Agencies and teams looking for a reliable freelance developer.
-- Mostly non-technical decision makers. Copy and layout must be clear and fast to scan.
+- Startup founders and small business owners needing a website, mobile app, or AI workflow built right.
+- Agencies and product teams looking for a reliable freelance developer.
+- Primarily non-technical decision makers: copy and structure must be clear, outcome-led, and easy to scan.
 
 ## 4. Contact Details (single source: `src/data/site.ts`)
 
-- Email: aazibali.dev@gmail.com
-- Phone: +92 371 2426373
-- Location: Islamabad, Pakistan
-- Social links: TBD
+- **Email:** `aazibali.dev@gmail.com`
+- **Phone:** `+92 371 2426373`
+- **Location:** Islamabad, Pakistan
+- **Social links:** TBD
 
 ---
 
@@ -45,27 +45,29 @@
 
 | Page | Route | Status |
 |---|---|---|
-| Home | `/` | Designed |
-| About | `/about` | Designed |
-| Contact | `/contact` | Designed |
-| Services | `/services` | To design (reuses Home services section) |
-| Work | `/work` | To design (reuses Home work section) |
+| Home | `/` | In progress (`Hero` mounted) |
+| About | `/about` | Stub |
+| Contact | `/contact` | Stub |
+| Services | `/services` | Planned (reuses Services + Process) |
+| Portfolio | `/portfolio` | Planned (reuses Work grid) |
+| FAQs | `/faqs` | Planned |
+| Schedule Consultation | `/schedule` | Planned (or external booking link) |
 
 ### Phase 2: Growth
 
 | Page | Route | Status |
 |---|---|---|
-| Web Development | `/services/web-development` | To design |
-| Mobile App Development | `/services/mobile-app-development` | To design |
-| AI & LLM Solutions | `/services/ai-llm-solutions` | To design |
-| Project detail (one per project) | `/work/[slug]` | To design |
+| Web Development | `/services/web-development` | Planned |
+| Mobile App Development | `/services/mobile-app-development` | Planned |
+| AI & LLM Solutions | `/services/ai-llm-solutions` | Planned |
+| Project detail (case study) | `/portfolio/[slug]` | Planned |
 
 ### Phase 3: Required
 
 | Page | Route | Status |
 |---|---|---|
-| Privacy Policy | `/privacy` | To write |
-| 404 | `not-found.tsx` | To design |
+| Privacy Policy | `/privacy` | Planned |
+| 404 | `not-found.tsx` | Planned |
 | Thank you (optional) | `/contact/thank-you` | Optional |
 
 **Out of scope for now:** blog, CMS, user accounts, e-commerce, multi-language, dark mode toggle.
@@ -74,175 +76,106 @@
 
 ## 6. Page Specs
 
-Each page uses the `Header` and `Footer`, and is built only from components in `src/components/sections/`. Section order below is the build order on the page.
+Every page renders inside `Header` and `Footer`, starts with a dark `.hero` banner (so the transparent header stays readable at scroll `0`), and is composed from sections in `src/components/sections/`.
 
 ### Home `/`
-1. Hero (eyebrow pill, H1, lead, primary + ghost button, code window or visual)
+1. Hero (eyebrow pill, H1, lead, primary + ghost CTA, `CodeWindow` visual)
 2. Services intro + 3 service cards
 3. Tech logo carousel
-4. Work intro + 6 project cards
+4. Portfolio intro + 6 project cards
 5. Process timeline
 6. Strengths grid
 7. Testimonials carousel
 8. Closing CTA
-- **Goal:** introduce, show proof, drive to Contact.
-- **Primary CTA:** Contact. **Secondary:** Work.
+- **Primary CTA:** Contact Me (`/contact`). **Secondary:** Explore My Work (`/portfolio`).
 
 ### About `/about`
-1. Hero (eyebrow, H1, bio paragraph, resume download button)
+1. Hero (eyebrow, H1, bio, resume download button)
 2. Journey intro + timeline
-3. Strengths or values block
+3. Strengths / values block
 4. Closing CTA
-- **Goal:** build trust and personality.
-- **Primary CTA:** Contact. **Secondary:** resume download.
 
 ### Contact `/contact`
 1. Hero (eyebrow, H1, lead)
-2. Location intro + map embed
-3. Contact intro + contact details + form
-4. Strengths block ("what I bring")
-- **Goal:** remove friction and capture the inquiry.
-- **Form fields:** name, email, project type (select), budget (optional), message.
-- **Primary CTA:** Send message.
+2. Location intro + lazy-loaded map embed
+3. Contact intro + direct details + inquiry form (`name`, `email`, `project type`, `budget` optional, `message`)
+4. Strengths block
 
 ### Services `/services`
 1. Hero
-2. Service cards (3), each linking to its detail page
+2. Service cards (3), linking to detail pages
 3. Process timeline
 4. Closing CTA
-- **Goal:** compare services and route to the right detail page.
 
-### Service detail `/services/[service]` (×3)
+### Service Detail `/services/[service]` (×3)
 1. Hero (service-specific H1 with primary keyword)
-2. What you get (outcomes)
-3. How it works (process steps)
+2. Outcomes ("What you get")
+3. Process steps ("How it works")
 4. Technologies used
-5. Related projects (from `projects.ts`, filtered by service)
-6. FAQ
+5. Related projects (filtered from `src/data/projects.ts`)
+6. Service FAQ
 7. Closing CTA
-- **Goal:** rank for one service keyword and convert.
 
-### Work `/work`
+### Portfolio `/portfolio`
 1. Hero
-2. Project grid (all projects, filterable by service type only if more than 6 exist)
+2. Project grid (all projects; category filter only if > 6 projects)
 3. Closing CTA
 
-### Project detail `/work/[slug]`
-1. Hero (project name, category, one-line summary)
+### Project Detail `/portfolio/[slug]`
+1. Hero (project name, category, summary)
 2. Overview (client, role, timeline, stack)
-3. Problem
-4. Approach
-5. Result (only facts the owner supplies)
-6. Screenshots
-7. Next project + Closing CTA
-- **Rule:** never invent results or metrics. Use only supplied facts.
+3. Problem → Approach → Result (supplied facts only; never invent metrics)
+4. Screenshots + Next project + Closing CTA
 
-### Privacy `/privacy`
-Plain long-form page: what data the contact form collects, how it is used, how to request deletion, contact email.
+### FAQs `/faqs` & Schedule `/schedule`
+- **FAQs:** Hero + grouped Q&A covering scope, timeline, pricing, process, and support + Closing CTA.
+- **Schedule:** Hero + booking embed/redirect or consultation request flow.
 
-### 404
-Short message, link back Home, link to Contact.
+### Privacy `/privacy` & 404 `not-found.tsx`
+- **Privacy:** Plain explanation of contact form data, usage, retention, deletion requests, and contact email.
+- **404:** Dark hero, concise explanation, links back to Home and Contact.
 
 ---
 
-## 7. Navigation
+## 7. Navigation (single source: `src/data/nav.ts`)
 
-**Header (desktop and mobile):** Home · Services · Work · About · Contact, plus the primary button "Let’s Work Together".
-**Footer:** brand + one-line positioning, link groups (Pages, Services, Contact), email, phone, social icons, copyright, Privacy link.
-Labels are max 2 words. Active page is highlighted.
+- **Header:** `Home` · `Services` (links to `/services` + dropdown: `Web Development`, `Mobile App Development`, `AI & LLM Solutions`) · `About` · `Portfolio` · `Resources` (dropdown: `FAQs`, `Schedule Consultation`) · Primary CTA `"Contact Me"` (`/contact`).
+- **Footer:** Brand logo + positioning statement; link groups (`Pages`, `Services`, `Contact` with email, phone, location); social icons (hidden until configured); bottom bar with copyright, `Privacy Policy`, and built-with line.
 
 ---
 
 ## 8. Features
 
-| Feature | Details |
+| Feature | Implementation |
 |---|---|
-| Contact form | `react-hook-form` + `zod`, Server Action, Resend email, honeypot spam protection, inline errors, success state |
-| Resend notifications | Email to owner on each submission, optional auto-reply to sender |
-| Tech carousel | Pure CSS infinite scroll, pause on reduced motion |
-| Testimonials | Embla carousel, keyboard accessible |
-| Scroll reveals | `motion`, only on process and strengths |
-| Map | Lazy-loaded Google Maps embed |
+| Contact form | `react-hook-form` + `zod` v4, Server Action (`src/actions/contact.ts`), Resend email, honeypot (+ optional Cloudflare Turnstile) |
+| Tech carousel | Pure CSS infinite scroll, pauses on `prefers-reduced-motion` |
+| Testimonials | `embla-carousel-react`, keyboard accessible |
+| Scroll reveals | `IntersectionObserver` + CSS transitions (`Reveal.tsx`), process and strengths only |
+| Map | Lazy-loaded Google Maps embed (no API key required) |
 | Resume | Static PDF in `public/`, download button |
-| Analytics | Vercel Analytics + Speed Insights |
-| SEO | Metadata API, `sitemap.ts`, `robots.ts`, Open Graph images, JSON-LD (`Person`, `Service`, `BreadcrumbList`) |
-| Accessibility | WCAG AA, keyboard navigation, reduced-motion support |
+| Analytics & Security | Vercel Analytics + Speed Insights; security headers & CSP in `next.config.ts` |
+| SEO | Next.js Metadata API (`src/lib/seo.ts`), `sitemap.ts`, `robots.ts`, OG images, JSON-LD (`Person`, `Service`, `BreadcrumbList`, `FAQPage`) |
 
 ---
 
-## 9. Content Model (typed files in `src/data/`)
+## 9. Content Model (`src/data/`)
 
-| File | Holds |
+| File | Purpose |
 |---|---|
-| `site.ts` | Name, role, location, email, phone, social links, domain |
-| `nav.ts` | Header and footer links |
-| `services.ts` | Slug, title, tagline, description, icon, keyword, outcomes, FAQs |
-| `projects.ts` | Slug, name, category, service, summary, stack, links, images, case-study fields |
-| `process.ts` | Step title, text, icon |
-| `strengths.ts` | Label, icon |
-| `testimonials.ts` | Name, company, review |
-| `seo.ts` (in `lib/`) | Default metadata and per-page title and description |
-
-All copy is generated following `CONTENT.md`, then stored here. Components never contain hardcoded text.
-
----
-
-## 10. SEO Plan
-
-- One primary keyword per page, proposed first and approved by the owner before copy is written.
-- Unique title and description for every page.
-- Service detail pages are the main ranking targets.
-- Internal linking: Home → Services → Service detail → Related projects → Contact.
-- Submit sitemap to Google Search Console after launch.
+| `site.ts` | Name, role, location, positioning statement, email, phone, socials, copyright |
+| `nav.ts` | Header links/groups, CTA, footer link groups, privacy link |
+| `hero.ts` | Per-page hero content (`HeroContent`) |
+| `services.ts` | Service cards and detail page data |
+| `projects.ts` | Portfolio cards and case study data |
+| `process.ts` | Process steps |
+| `strengths.ts` | Strengths grid items |
+| `testimonials.ts` | Client quotes |
+| `src/lib/seo.ts` | Default metadata and per-page SEO helpers |
 
 ---
 
-## 11. Integrations and Environment
+## 10. Environment & Targets
 
-| Service | Use |
-|---|---|
-| Vercel | Hosting, previews, analytics |
-| GitHub | Source control, auto-deploy on push to `main` |
-| Resend | Contact form email |
-| Google Maps | Embed only (no API key required) |
-| Cloudflare Turnstile | Optional spam protection |
-
-**Environment variables** (documented in `.env.example`, never committed):
-`RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, `NEXT_PUBLIC_SITE_URL`
-
----
-
-## 12. Performance and Quality Targets
-
-- Lighthouse 95+ in Performance, Accessibility, Best Practices, SEO.
-- Largest Contentful Paint under 2.5s on mobile.
-- Zero layout shift from fonts or images.
-- Fully responsive at 375px, 768px, 1280px and above.
-- No console errors. Lint, type check, and build all pass.
-
----
-
-## 13. Launch Checklist
-
-- [ ] All Phase 1 pages built and responsive
-- [ ] Copy written per `CONTENT.md` and approved
-- [ ] Contact form tested end to end (submit, email arrives, errors, spam)
-- [ ] Metadata, sitemap, robots, Open Graph images in place
-- [ ] Accessibility pass (keyboard, contrast, alt text, reduced motion)
-- [ ] Lighthouse targets met
-- [ ] Custom domain connected on Vercel, HTTPS active
-- [ ] Analytics confirmed
-- [ ] Google Search Console set up, sitemap submitted
-- [ ] Privacy page live and linked in footer
-
----
-
-## 14. Open Items (owner input needed)
-
-- Domain name
-- Logo or brand mark
-- Social profile links
-- Resume PDF
-- Project details and screenshots (per project)
-- Approved primary keyword for each page
-- Final decision on mobile card grid (1 column assumed)
+- **Env vars (`.env.example` → `.env.local`):** `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, `NEXT_PUBLIC_SITE_URL`.
+- **Quality targets:** Lighthouse 95+ across all categories (mobile), LCP < 2.5s, zero layout shift, responsive at 375px / 768px / 1025px / 1280px+, clean `lint` / `tsc` / `build`.

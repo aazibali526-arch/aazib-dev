@@ -123,7 +123,7 @@ Load via Google Fonts, `display=swap`: Space Grotesk 600/700, Poppins 400, JetBr
 - Space Grotesk → all headings and strength labels
 - Poppins 400 → all paragraphs, nav links, footer links and footer text `[P]`
 - JetBrains Mono 500 → eyebrows, buttons, link-buttons, code UI. JetBrains Mono 400 → footer bottom bar `[P]`
-- Aldrich 400 → h6 taglines, contact detail line
+- Aldrich 400 → card taglines (`<p>`), contact detail line
 
 | Style | Font | Wt | Desktop / Tablet / Mobile (px) | Line-h | Tracking | Color |
 |---|---|---|---|---|---|---|
@@ -132,13 +132,13 @@ Load via Google Fonts, `display=swap`: Space Grotesk 600/700, Poppins 400, JetBr
 | H2 card title | Space Grotesk | 600 | 24 / 20 / 18 | 1.3 | 0 | `--ink-900` |
 | Lead paragraph | Poppins | 400 | 18 / 16 / 14 | 1.6 | 0 | `--slate-600` (hero: `--surface-50` `[I]`) |
 | Card paragraph | Poppins | 400 | 16 / 14 / 13 | 1.6 | 0 | `--slate-600` |
-| Tagline (h6) | Aldrich | 400 | 16 (12 on project category tags) | 1.6 | 0 | `--ink-900` |
+| Tagline (`<p>`) | Aldrich | 400 | 16 (12 on project category tags) | 1.6 | 0 | `--ink-900` |
 | Eyebrow | JetBrains Mono | 500 | 16 / 16 / 14 | 1.4 | 0 | `--blue-700` light · `--white` dark |
 | Link-button | JetBrains Mono | 500 | 18 / 16 / 15 | 1.5 | 0.02px | `--blue-600` |
 | Button label | JetBrains Mono | 500 | 16 / 16 / 15 `[P]` | 1.4 | 0 | per variant |
 | Nav link `[P]` | Poppins | 400 | 16 / 16 / 16 | 1.4 | 0 | `--surface-50` (hover/active `--white`) |
 | Footer heading `[P]` | Space Grotesk | 600 | 18 / 18 / 18 | 1.3 | 0 | `--surface-50` |
-| Footer statement `[P]` | Poppins | 400 | 20 / 20 / 18 | 1.6 | 0 | `--surface-50` |
+| Footer statement `[P]` | Poppins | 400 | 14 / 14 / 14 | 1.5 | 0 | `--code-text` |
 | Footer link `[P]` | Poppins | 400 | 14 / 14 / 14 | 1.5 | 0 | `--code-text` (hover `--code-accent`) |
 | Footer meta `[P]` | JetBrains Mono | 400 | 13 / 13 / 13 | 1.5 | 0 | `--code-title` (hover `--code-accent`) |
 
@@ -318,7 +318,7 @@ Full-width embedded map, height 560px. Section intro above: eyebrow "My Location
 - **Surface:** bg `--ink-950`, text `--code-text`. Padding `64px 40px 32px` (tablet `64 32 32`, mobile `48 20 24`). Inner content max 1200px. Sits at the bottom of the page even on short pages.
 - **Desktop layout (≥1025px):** 12-column grid. Left, 5 columns: brand block. Right, 7 columns: three equal columns Pages, Services, Contact. Gap 32px between the two sides.
 - **Tablet:** brand block full width on top, then Pages, Services, Contact as 3 columns. **Mobile:** everything in 1 column. Gap between blocks 48px, between columns 32px.
-- **Brand block:** logo image `logo-header.png`, height 56px mobile / 64px tablet / 80px desktop, then the positioning statement under it (Poppins 400, 18px mobile / 20px tablet and up, line-height 1.6, `--surface-50`, max-width 28rem). Statement copy lives in `site.ts` (`positioning`), max 20 words (CONTENT.md), pending owner approval.
+- **Brand block:** logo image `logo-header.png`, height 64px mobile / 80px tablet / 96px desktop, then the positioning statement under it (Poppins 400, 14px, line-height 1.5, `--code-text`, max-width 28rem). Statement copy lives in `site.ts` (`positioning`), max 20 words (`docs/CONTENT.md`).
 - **Link columns:** headings (`h2`) Space Grotesk 600 18px `--surface-50`. Links Poppins 400 14px `--code-text`, min-height 32px, hover `--code-accent`. Pages: Home, About, Portfolio, FAQs, Schedule Consultation, Contact. Services: Web Development, Mobile App Development, AI & LLM Solutions. Data lives in `nav.ts`.
 - **Contact column:** email (`mailto:`), phone (`tel:`), location. Each with a 16px stroke icon, same link style. Data lives in `site.ts`.
 - **Bottom bar:** margin-top 48px, padding-top 24px, 1px top border `--code-border`. Left: copyright "© 2026 Aazib Ali. All rights reserved." and the Privacy Policy link. Right: 16px coffee icon and "Built with Next.js, Tailwind CSS and a lot of coffee." All in JetBrains Mono 400 13px `--code-title`, link hover `--code-accent`. Stacks vertically below 768px.
@@ -411,15 +411,9 @@ Before finishing any task, confirm:
 
 ---
 
-## 12. STILL UNCONFIRMED (NEEDS YOUR INPUT)
+## 12. STILL UNCONFIRMED (NEEDS OWNER INPUT)
 
 - Original logo with tagline (for light backgrounds). The white header variant is in `public/images/logo-header.png`.
-- Footer positioning text approval (draft in `site.ts`) and social links
-- Booking link for "Schedule Consultation" (Calendly or Cal.com)
-- Whether mobile card grid is 1 column (assumed)
-`````
-`````
-
-- **STATE.md mein maine kya maana:** Button, Card, Eyebrow, IconNode, SectionIntro `[x]` hain (preview approve aur build pass). Header, MobileNav, Footer `[~]` hain, kyunki scroll-header, Services link aur Footer ke baad full build result tumne paste nahi kiya. Pass ho jaye to `[x]` bol dena.
-- **Footer logo/text diff:** DESIGN.md 6.13 mein wahi spec hai (logo 56/64/80px, Poppins 400 text). Agar wo diff abhi apply nahi kiya, pehle kar lo, warna code aur doc alag ho jayenge.
-- **Dhyan:** `PROJECT.md`, `AGENTS.md` aur `CLAUDE.md` mein abhi `/work` aur purana nav likha hai. STATE.md ke Open Questions mein note kar diya hai, jab bologe tab unka diff bana dunga.
+- Final approval for footer positioning text (`site.ts`) and social profile links.
+- Booking link for "Schedule Consultation" (Calendly or Cal.com).
+- Whether mobile card grid is 1 column (assumed).
