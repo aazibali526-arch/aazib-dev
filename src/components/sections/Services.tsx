@@ -8,20 +8,22 @@ export function Services() {
   return (
     <Section label="Services">
       <SectionIntro {...servicesSection.intro} />
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:max-lg:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (
           <Card
             key={service.slug}
+            icon={service.icon}
             title={service.title}
             tagline={service.tagline}
             description={service.description}
             image={service.image}
             link={{ href: service.href, label: service.linkLabel }}
+            hoverIconOnCard
           />
         ))}
       </div>
       <div className="mt-6 flex justify-center md:mt-8 lg:mt-10">
-        <Button variant="outline" href={servicesSection.cta.href}>
+        <Button variant="accent" href={servicesSection.cta.href}>
           {servicesSection.cta.label}
         </Button>
       </div>

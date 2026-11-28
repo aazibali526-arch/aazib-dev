@@ -2,7 +2,13 @@ import Link from "next/link";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-export type ButtonVariant = "primary" | "ghost" | "outline" | "link" | "submit";
+export type ButtonVariant =
+  | "primary"
+  | "ghost"
+  | "outline"
+  | "accent"
+  | "link"
+  | "submit";
 
 interface ButtonOwnProps {
   variant?: ButtonVariant;
@@ -29,6 +35,10 @@ const base =
   "inline-flex items-center justify-center font-mono font-medium leading-[1.4] text-[15px] md:text-base transition-colors duration-500 ease-smooth disabled:cursor-not-allowed disabled:opacity-60";
 
 const solid = "min-h-12 rounded-btn border-2 px-7 py-3.5";
+const accent = cn(
+  solid,
+  "border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700",
+);
 
 const variants: Record<ButtonVariant, string> = {
   primary: cn(
@@ -43,10 +53,8 @@ const variants: Record<ButtonVariant, string> = {
     solid,
     "btn-shine btn-shine-blue border-blue-600 bg-transparent text-blue-600 hover:text-blue-700",
   ),
-  submit: cn(
-    solid,
-    "border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700",
-  ),
+  accent,
+  submit: accent,
   link: "m-0 min-h-11 border-0 bg-transparent p-0 text-blue-600 leading-[1.5] tracking-[0.02px] transition-transform duration-[1300ms] ease-smooth motion-safe:hover:-translate-y-1 lg:text-lg",
 };
 

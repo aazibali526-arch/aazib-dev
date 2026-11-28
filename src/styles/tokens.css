@@ -36,6 +36,13 @@
   --code-tab-text: #E6E9EF;
   --code-muted: #5C6370;
   --code-accent: #61AFEF;
+  --code-keyword: #C678DD;
+  --code-string: #98C379;
+  --code-variable: #E5C07B;
+  --code-property: #E06C75;
+  --code-current-line: rgba(255, 255, 255, 0.045);
+  --code-caret: #528BFF;
+  --code-selection: rgba(82, 139, 255, 0.35);
   --dot-red: #FF5F56;
   --dot-yellow: #FFBD2E;
   --dot-green: #27C93F;

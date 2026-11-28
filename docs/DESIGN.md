@@ -231,7 +231,8 @@ All: JetBrains Mono 500, **2px border, radius 4px**. Size `[P]`: padding `14px 2
 |---|---|---|---|---|---|
 | Primary (dark bg) | "Contact Me" (header), CTA, "Download My Resume ↓" | `--white` | `--ink-950` | `--white` | bg `--ink-950`, text `--white`, border `--ink-950` |
 | Ghost (dark bg) | "Explore My Work" | transparent | `--white` | `--white` | bg `--white`, text `--ink-950`, sheen sweep |
-| Outline (light bg) | "Explore All Services" | transparent | `--blue-600` | `--blue-600` `[I]` | text `--blue-700`, sheen sweep |
+| Accent (light bg CTA) | "Explore All Services" | `--blue-600` | `--white` | `--blue-600` | bg/border `--blue-700` |
+| Outline (light bg) | "Explore All Projects" | transparent | `--blue-600` | `--blue-600` `[I]` | text `--blue-700`, sheen sweep |
 | Link-button | inside cards | transparent | `--blue-600` | none, padding 0, margin 0 | `float` animation, transition 1.3s |
 
 Link-button: right-aligned, label ends with ` →`, min-height 44px (touch target). Float `[P]`: `translateY(-4px)`, 1.3s `--ease-smooth`.
@@ -297,7 +298,7 @@ Until logo files exist, items are text names (JetBrains Mono 500, 14px, 16px fro
 ### 6.8 Code window `[S]`
 Radius 0, 2px `--code-border`, bg `--code-bg`, JetBrains Mono 13.5px/1.7, text `--code-text`. Title bar height 2.7em with red/yellow/green dots (.82em). Tab bar height 2.6em, active tab text `--code-tab-text` with 2px `--code-accent` top inset.
 
-Bars use `--code-bg` with 1px `--code-border` dividers, padding 16px, dot gap 8px, line numbers `--code-muted`. Token colours: keys `--code-accent`, strings `--code-tab-text`, punctuation `--code-muted`, other `--code-text`. Content is real facts only (`codeWindow.ts`). `[P]`
+Bars use `--code-bg` with 1px `--code-border` dividers, padding 16px, dot gap 8px, line numbers `--code-muted`. The editor title is `about-me.ts — aazib-portfolio`; the tab includes a TypeScript marker and close icon. Syntax colours: keywords `--code-keyword`, functions `--code-accent`, strings `--code-string`, variables `--code-variable`, properties `--code-property`, comments `--code-muted`, and other text `--code-text`. Highlight the current line with `--code-current-line`, the caret with `--code-caret`, and text selection with `--code-selection`. Keep the status bar inside the existing window dimensions. Content is real facts only (`codeWindow.ts`). `[P]`
 
 ### 6.9 Closing CTA `[S]`
 Section bg: cover image, centered, no-repeat. Glass panel: gradient 110° `--glass-cta-from` → `--glass-cta-to`, 1px `--glass-cta-border`, radius 5px.

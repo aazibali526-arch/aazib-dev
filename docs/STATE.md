@@ -11,22 +11,23 @@
 
 ## CURRENT STATUS
 
-- **Phase:** 0 nearly done (`.env.local` and Vercel import pending). Phase 1 done. Phase 2 written (preview pending for `Input`, `Textarea`, `Field`, `Reveal`). Phase 3 written (`Header`, `DesktopNav`, `NavDropdown`, `MobileNav`, `Footer`). Phase 4 started (`Hero` mounted on `/` from `src/data/hero.ts`).
+- **Phase:** 0 nearly done (`.env.local` and Vercel import pending). Phase 1 done. Phase 2 written (preview pending for `Input`, `Textarea`, `Field`, `Reveal`). Phase 3 written (`Header`, `DesktopNav`, `NavDropdown`, `MobileNav`, `Footer`). Phase 4 in progress (`Hero`, `CodeWindow`, and `Services` implemented).
 - **Implemented files:**
   - Config & styles: `next.config.ts` (Cache Components, Partial Prefetching, security headers), `src/styles/tokens.css`, `src/app/globals.css`
-  - Lib & data: `src/lib/fonts.ts`, `src/lib/navigation.ts`, `src/lib/seo.ts`, `src/lib/utils.ts`, `src/data/site.ts`, `src/data/nav.ts`, `src/data/hero.ts`
+  - Lib & data: `src/lib/fonts.ts`, `src/lib/navigation.ts`, `src/lib/seo.ts`, `src/lib/utils.ts`, `src/data/site.ts`, `src/data/nav.ts`, `src/data/hero.ts`, `src/data/services.ts`
   - UI & shared primitives: `Button`, `Card`, `Eyebrow`, `IconNode`, `Field`, `Input`, `Textarea`, `SectionIntro`, `Reveal`
-  - Layout & sections: `Header`, `DesktopNav`, `NavDropdown`, `MobileNav`, `navStyles.ts`, `Footer`, `Hero`
+  - Layout & sections: `Header`, `DesktopNav`, `NavDropdown`, `MobileNav`, `navStyles.ts`, `Footer`, `Hero`, `CodeWindow`, `Services`
   - App routes & assets: `layout.tsx`, `page.tsx` (`Hero` + TEMP primitive preview), stubs for `about/page.tsx`, `contact/page.tsx`, `robots.ts`, `sitemap.ts`, and `public/images/logo-header.png`
-- **Still empty (0 bytes):** `src/actions/contact.ts`, `src/data/{services,projects,process,strengths,testimonials}.ts`, and section components `CodeWindow`, `Services`, `TechCarousel`, `Work`, `Process`, `Strengths`, `Testimonials`, `ClosingCTA`, `ContactForm`, `MapEmbed`.
-- **Checks:** `pnpm lint` and `pnpm exec tsc --noEmit` pass on current code. `pnpm build` requires network access for `next/font/google` (verify locally outside offline sandboxes).
+- **Still empty (0 bytes):** `src/actions/contact.ts`, `src/data/{projects,process,strengths,testimonials}.ts`, and section components `TechCarousel`, `Work`, `Process`, `Strengths`, `Testimonials`, `ClosingCTA`, `ContactForm`, `MapEmbed`.
+- **Checks:** `pnpm lint`, `pnpm exec tsc --noEmit`, and `pnpm build` pass. CodeWindow browser checks pass at 375 / 768 / 1280px, including viewport entry/exit/resume, autocomplete, selection, and reduced motion. Services verified at 375 / 768 / 1280px with 1 / 2 / 3 columns, the shared IconNode hover, reduced motion, and no overlap or layout shift. Strict Mode and unmount runtime checks were not independently verified because another Next dev server holds the workspace lock.
+- **CodeWindow files:** `CodeWindow.tsx`, `CodeWindowEditor.tsx`, `codeWindowSyntax.tsx`, `useCodeWindowAnimation.ts`, `src/data/codeWindow.ts`, `src/app/globals.css`, `src/styles/tokens.css`, `docs/DESIGN.md`, and the Hero width integration in `Hero.tsx`. No dependencies added.
 - **Owner approved in preview:** `Button`, `Card`, `Eyebrow`, `IconNode`, `SectionIntro`. Pending preview: `Input`, `Textarea`, `Reveal`, `Header`, `Footer`, `Hero`.
 
 ## NEXT (IN ORDER)
 
-1. Run `pnpm lint`, `pnpm exec tsc --noEmit`, and `pnpm build` locally (online) and preview at 375 / 768 / 1025 / 1280px: `Header`, `MobileNav`, `Footer` (customized 64/80/96px logo + 14px `--code-text` statement), `Hero`, `Input`, `Textarea`, and `Reveal`. Mark Phase 2, Phase 3, and `Hero` `[x]` once verified.
-2. Owner decisions: approve final `site.ts` positioning statement and page primary keywords, and supply social links, booking link (Calendly/Cal.com), resume PDF, light-bg logo, and service/project content.
-3. Complete Phase 4 home sections (`CodeWindow` through `ClosingCTA`), remove the TEMP preview from `src/app/page.tsx`, and remove unused `public/*.svg` starter files once no longer referenced.
+1. Preview at 375 / 768 / 1025 / 1280px: `Header`, `MobileNav`, `Footer` (customized 64/80/96px logo + 14px `--code-text` statement), `Hero`, `Input`, `Textarea`, and `Reveal`. Mark Phase 2, Phase 3, and `Hero` `[x]` once verified.
+2. Owner decisions: approve final `site.ts` positioning statement and page primary keywords, and supply social links, booking link (Calendly/Cal.com), resume PDF, light-bg logo, and project content.
+3. Complete the remaining Phase 4 home sections (`TechCarousel` through `ClosingCTA`), remove the TEMP preview from `src/app/page.tsx`, and remove unused `public/*.svg` starter files once no longer referenced.
 
 ## OPEN QUESTIONS
 
@@ -34,7 +35,7 @@
 - **Dark hero requirement:** Every page needs a dark `.hero` banner at the top because `Header` is transparent at scroll `0` with light text.
 - **Schedule Consultation:** Internal `/schedule` page vs external booking link (Calendly/Cal.com) pending owner input.
 - **Footer socials & copyright:** Social links hidden until `site.socials` is populated (inline brand SVGs needed since `lucide-react` omits brand icons). `copyrightYear: 2026` is fixed in `site.ts` for Cache Components determinism; update before launch if year rolls over.
-- **Assets & copy pending:** Light-bg logo, service icons (`public/images/services/`), service/project copy (`docs/CONTENT.md`), and default meta description.
+- **Assets & copy pending:** Light-bg logo, service/project copy (`docs/CONTENT.md`), and default meta description.
 - **Dark-section `SectionIntro`:** Add dark variant to `docs/DESIGN.md` 6.15 when `TechCarousel` or `ClosingCTA` needs it.
 - **Unused dependency:** `motion` (`^14.14.0`) is installed in `package.json` while `Reveal` currently uses `IntersectionObserver` + CSS. Remove or adopt in Phase 4/7.
 
@@ -83,9 +84,9 @@
 
 ## PHASE 4: HOME SECTIONS
 
-- [~] `Hero` (mounted on `/` from `src/data/hero.ts`; `CodeWindow` right column pending; TEMP preview still below it)
-- [ ] `CodeWindow`
-- [ ] `Services` (3 cards)
+- [~] `Hero` (mounted on `/` from `src/data/hero.ts`; supporting text restored to prior copy, visual preview pending; `CodeWindow` right column upgraded; TEMP preview still below it)
+- [~] `CodeWindow` (visual upgrade completed; title updated and trailing blank row removed; animation implemented; Strict Mode and unmount verification pending)
+- [x] `Services` (3 cards; desktop 3-column grid, service icons, shared IconNode hover effect, and filled accent CTA)
 - [ ] `TechCarousel` (pure CSS, mask fade, hover color)
 - [ ] `Work` (6 project cards)
 - [ ] `Process` (timeline with scroll fill)
@@ -100,7 +101,7 @@
 - [ ] Extract and review existing copy from Elementor exports
 - [ ] Generate and approve SEO-focused copy per section
 - [ ] Finalize footer positioning text in `src/data/site.ts`
-- [ ] Fill `services.ts`, `projects.ts`, `process.ts`, `strengths.ts`, `testimonials.ts`
+- [ ] Fill `projects.ts`, `process.ts`, `strengths.ts`, `testimonials.ts`
 - [ ] Write unique meta title and description for every page
 
 ## PHASE 6: PAGES & CONTACT

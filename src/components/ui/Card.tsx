@@ -1,6 +1,8 @@
 import Image from "next/image";
+import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { cardSurface } from "@/components/ui/cardStyles";
+import { IconNode } from "@/components/ui/IconNode";
 import { cn } from "@/lib/utils";
 
 export interface CardImage {
@@ -20,10 +22,12 @@ export interface CardProps {
   description: string;
   tagline?: string;
   taglineSize?: "default" | "small";
+  icon?: LucideIcon;
   image?: CardImage;
   link?: CardLink;
   headingLevel?: "h2" | "h3" | "h4";
   className?: string;
+  hoverIconOnCard?: boolean;
 }
 
 export function Card({
@@ -31,14 +35,22 @@ export function Card({
   description,
   tagline,
   taglineSize = "default",
+  icon: Icon,
   image,
   link,
   headingLevel: Heading = "h3",
   className,
+  hoverIconOnCard = false,
 }: CardProps) {
   return (
-    <article className={cn(cardSurface, className)}>
-      {image ? (
+    <article className={cn(cardSurface, hoverIconOnCard && "group", className)}>
+      {Icon ? (
+        <IconNode
+          icon={Icon}
+          variant="strength"
+          hoverOnParent={hoverIconOnCard}
+        />
+      ) : image ? (
         <Image
           src={image.src}
           alt={image.alt}

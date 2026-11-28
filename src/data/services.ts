@@ -1,3 +1,5 @@
+import { BrainCircuit, Code2, Smartphone } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import type { CardImage } from "@/components/ui/Card";
 import type { NavLink } from "@/data/nav";
 import type { IntroContent } from "@/data/types";
@@ -9,6 +11,7 @@ export interface ServiceItem {
   description: string;
   href: string;
   linkLabel: string;
+  icon: LucideIcon;
   image?: CardImage;
 }
 
@@ -19,7 +22,7 @@ export interface ServicesSection {
 
 export const servicesSection: ServicesSection = {
   intro: {
-    eyebrow: "What I Build",
+    eyebrow: "Services & Solutions",
     title: "Websites, Apps & AI Built Around Your Goals",
     lead: "I take your idea from first sketch to a working product, so you get something that earns its place in your business.",
   },
@@ -29,6 +32,7 @@ export const servicesSection: ServicesSection = {
 export const services: ServiceItem[] = [
   {
     slug: "web-development",
+    icon: Code2,
     title: "Web Development",
     tagline: "Your Website, Built to Perform.",
     description:
@@ -38,6 +42,7 @@ export const services: ServiceItem[] = [
   },
   {
     slug: "mobile-app-development",
+    icon: Smartphone,
     title: "Mobile App Development",
     tagline: "Apps People Keep Using.",
     description:
@@ -47,6 +52,7 @@ export const services: ServiceItem[] = [
   },
   {
     slug: "ai-llm-solutions",
+    icon: BrainCircuit,
     title: "AI & LLM Solutions",
     tagline: "Practical AI For Real Workflows.",
     description:

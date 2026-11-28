@@ -16,8 +16,8 @@ export function Hero({
   visual,
 }: HeroProps) {
   return (
-    <section className="hero px-5 pb-12 pt-28 md:px-8 md:pb-16 md:pt-36 lg:px-10 lg:pb-20 lg:pt-40">
-      <div className="mx-auto flex max-w-300 flex-col gap-8 lg:flex-row lg:items-center">
+    <section className="hero flex min-h-svh flex-col justify-center px-5 pb-12 pt-28 md:px-8 md:pb-16 md:pt-36 lg:px-10 lg:pb-20 lg:pt-40">
+      <div className="mx-auto flex w-full max-w-300 flex-col gap-8 lg:flex-row lg:items-center">
         <div className="flex flex-col items-center gap-4 text-center lg:flex-1 lg:items-start lg:text-left">
           {eyebrow ? (
             <Eyebrow className="self-center lg:self-start">{eyebrow}</Eyebrow>
@@ -49,7 +49,7 @@ export function Hero({
           ) : null}
         </div>
 
-        {visual ? <div className="w-full lg:flex-1">{visual}</div> : null}
+        {visual ? <div className="w-full min-w-0 lg:flex-1">{visual}</div> : null}
       </div>
     </section>
   );

@@ -9,9 +9,9 @@ export interface HeroContent {
 }
 
 export const homeHero: HeroContent = {
-  eyebrow: "Open For Freelance",
-  title: "Freelance Developer in Islamabad Building Websites, Apps & AI",
+  eyebrow: "Open to Remote Work",
+  title: "Hi, I’m Aazib. I Build Web, Mobile & AI Solutions.",
   lead: "I design and build fast websites, custom mobile applications, and AI solutions that streamline workflows and help your business grow.",
-  primaryCta: { label: "Contact Me", href: "/contact" },
+  primaryCta: { label: "Let's Work Together", href: "/contact" },
   secondaryCta: { label: "Explore My Work", href: "/portfolio" },
 };

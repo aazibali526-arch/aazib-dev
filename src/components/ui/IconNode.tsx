@@ -7,6 +7,7 @@ interface IconNodeProps {
   icon: LucideIcon;
   variant?: IconNodeVariant;
   className?: string;
+  hoverOnParent?: boolean;
 }
 
 const base =
@@ -27,11 +28,20 @@ export function IconNode({
   icon: Icon,
   variant = "process",
   className,
+  hoverOnParent = false,
 }: IconNodeProps) {
   const { node, icon } = sizes[variant];
 
   return (
-    <span className={cn(base, node, className)}>
+    <span
+      className={cn(
+        base,
+        node,
+        hoverOnParent &&
+          "group-hover:border-blue-600 group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-ring-node-hover",
+        className,
+      )}
+    >
       <Icon aria-hidden="true" strokeWidth={2} className={icon} />
     </span>
   );
